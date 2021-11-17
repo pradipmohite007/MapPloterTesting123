@@ -1,0 +1,58 @@
+
+<div class="searchResults-wrapper">
+	<div class="list-search-container row no-gutters flex-nowrap align-items-center">
+		<div class="input-group col-9">
+			<i class="fa fa-search icon-search"></i>
+			<input id="reportResSrch" type="text" class="form-control list-search-input" placeholder="Search"/>
+		</div>
+		<div class="results-info col-3">
+			<p class="mb-0"><span id="reportDPCount"></span> Results</p>
+		</div>
+	</div>
+</div>
+<table id="reportsDPTable" class="table table-striped dt-responsive dataTable">
+	<thead class="tableheadbg">
+		<tr>
+			<th>
+				<div class="select-all-container">
+					<input type="checkbox" id="selectAllReportData" class="css-checkbox" />
+					<label for="selectAllReportData" class="css-label"></label>
+				</div>
+			</th>
+			<th>Data Point Name</th>
+			<th>Type</th>
+		</tr>
+	</thead>
+	<tbody id="dpTableBody">
+		<% _.each(data, function(dataObj){ %>
+		<tr>
+			<td>
+				<input type="checkbox" id="<%= dataObj.Id %>" class="css-checkbox reportcheck" />
+				<label for="<%= dataObj.Id %>" class="css-label">
+			</td>
+			<td>
+				<span><%= dataObj.Label %></span>
+			</td>
+			<td>
+				<% if(dataObj.Color && dataObj.Color !== null){ %>
+					<i class="fa fa-map-marker customMarker" style="color: <%= dataObj.Color %>"></i>
+				<% } else { %>
+					<% var dObj = _.findWhere(dataObjects, {"Entity": dataObj.Entity});
+				   		if(dObj){ var dIndex = dObj.Pin_No } %>
+					<i class="marker marker-<%= dIndex %>"></i>
+				<% } %>
+				<span class="hidden"><%= dataObj.Entity %></span>
+			</td>
+		</tr>
+		<% }); %>
+	</tbody>
+</table>
+<!-- <div class="rptFooter"> -->
+	<div class="d-flex justify-content-between action-btn-wrapper">
+    <input type="checkbox" id="is-cluster-form" class="css-checkbox datapointcheck" />
+    <label for="is-cluster-form" class="css-label">View Clusters</label>
+		<!--	<button onclick="$('#ExportFilterConfirm').modal({backdrop: 'static'});" type="button"class="btn btn-default btn-mapplotterbutton">Export Filter</button>
+		<button id="massUpdate" type="button" class="btn btn-default btn-mapplotterbutton">Mass Update</button>-->	
+		<button id="resultPlot" type="button" class="btn btn-default btn-mapplotterbutton">Plot on Map</button>	
+	</div>
+<!-- </div> -->

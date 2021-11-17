@@ -1,0 +1,67 @@
+<!--DATA POINT SELECTION PANEL-->
+<div id="dataPointPanel" class="data-point-panel">
+   <!-- #dataPointTemplate will render here --> 
+</div>        
+<!--Top Bar-->
+<div class="top-bar left-menu-wrapper">
+	<!-- <div class="add-locations-button pull-left">
+		<span>Add location</span>
+	</div> -->
+   <div class="top-menu left-panel-menu">
+		<ul class="nav navbar-nav menu-wrapper">
+			<li class="menu-active">
+				<a href="javascript:void(0);"><i class="map-icons-position map-icons mobile-icons"></i><span>Plot Objects</span> </a>
+			</li>
+			<li>
+				<a href="javascript:void(0);"><i class="map-icons-position report-icons mobile-icons"></i><span>Plot Report</span> </a>
+			</li>
+			<li>
+				<a href="javascript:void(0);"><i class="map-icons map-icons-position mobile-icons"></i><span class="sr-only">Search</span></a>
+			</li>
+		</ul>
+	</div>
+	<div id="advSrchButton" class="advance-search-button advance-search pull-right hidden-xs advsrch">
+		<span>Search</span>
+	</div>
+</div>
+<div id="data-point-slider" class="data-point-slider-list">
+	<div class="data-point-list iScroll" id="dataObjectContainer">
+		<!-- #dataObjectTemplate will render here -->
+	</div>
+	<span id="addCustomObj" class="add-data-point trigger">
+		 <i class="fa fa-plus"></i>
+	</span>
+</div>
+<!--Advance Search Panel-->
+<div id="advanceSearch" class="advance-search-panel">
+	<div class="title-panel">
+		<p><!-- Select Data Points --></p>
+	</div>
+	<div id="advSCustomObjs">
+		<!-- #advSCustObjTemplate will render here -->
+	</div>
+	<div class="clearfix"></div>
+	<div class="search">
+		<input id="advSearchText" type="text" name="search" placeholder="Search" class="round" />
+		<button id="advSearchButton" class="corner" value="">
+		  <i class="fa fa-search"></i>
+		</button>
+	</div>
+	<div class="clearfix"></div>
+	<!--Result list-->
+	<!-- <div class="result-list">
+		<div id="advance-search-list" class="panel-collapse collapse in" role="tabpanel">
+			#advSResultTemplate will render here                    
+		</div>
+	</div> -->
+	<!--Bottom button section-->
+	<div class="bottom-button">
+		<!-- <button class="btn active-button pull-right" id="resultPlot" type="button">Plot On Map</button> -->
+		<button class="btn cancel-button pull-right" id="cancel-adv-search" type="button">Cancel</button>
+	</div>
+</div>
+<!--/Advance Search Panel-->
+<!--Section::Map Viewer-->
+<div class="map-viewer" id="map-plotter-map">
+   <!--Map Goes here...-->           
+</div>

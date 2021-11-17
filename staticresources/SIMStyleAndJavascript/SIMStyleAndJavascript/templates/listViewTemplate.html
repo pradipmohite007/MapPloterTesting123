@@ -1,0 +1,64 @@
+<div id="countryPanel" class="list-view-panel row no-gutters flex-column full-ht">
+   <div class="top-head">
+		<div class="list-panel-title">
+			<p class="sub-title px-3"> Select Location</p>
+		</div>
+		<div class="search-outer-wrapper px-2">
+			<div class="list-search-container">
+				<i class="fa fa-search icon-search"></i>
+				<input type="text" class="form-control list-search-input" id="country-search" placeholder="Search"/>
+			</div>
+		</div>
+	</div>  
+	<div id="listViewAccContainer" class="countrylist-wrapper">
+		<!-- #listViewAccordTemplate will render here -->
+	</div>
+	<div class="bottom-footer">
+		<div class="d-flex justify-content-end action-btn-wrapper">
+			<button id="getListData" type="button" class="btn btn-default btn-mapplotterbutton">Next</button>
+		</div>
+	</div>
+</div>
+<div id="dpResultPanel" class="list-getdata-panel" style="display: none;">
+	<div class="row mx-0 flex-nowrap align-items-center searchResults-wrapper">
+		<div class="col-9 list-search-container">
+			<i class="fa fa-search icon-search"></i>
+			<input id="reportResSrch" type="text" class="form-control list-search-input" id="country-search" placeholder="Search"/>
+		</div>
+		<div class="col results-info pl-0">
+			<p class="mb-0"><span id="dpCount"></span> Results</p>
+		</div>
+	</div>
+	<div id="resultsAccordionContainer" class="get-data-list-wrapper col-12">
+		<!-- #largeTableTemplate will render here -->
+	</div>
+	<div id="listBtn"class="d-flex flex-wrap justify-content-end action-btn-wrapper">
+		<div class="dropup">
+            <button class="btn btn-default dropdown-toggle redbtn" type="button" id="exportDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Export</button>
+            <ul id="exportDrop" class="dropdown-menu" aria-labelledby="exportDropdown">
+              <li id="excelBtnCont">
+                <a id="getExcel"  class="btn btn-default btn-sm btn-mapplotterbutton"><span class="download-icon"><i class="fa fa-download" aria-hidden="true"></i>Excel</a>
+                  <div id="excelBtnCont"></div>
+              </li>
+            </ul>
+        </div>
+		<!-- <button id="listViewPlot" type="button" class="btn btn-default  btn-sm btn-mapplotterbutton">Plot on Map</button>
+		<button id="editLocations" type="button" class="btn btn-default btn-sm btn-mapplotterbutton">Edit Locations</button> -->
+		<div class="dropup exportmenu-btn mb-1 view-clusters">
+       <input type="checkbox" id="is-cluster-form" class="css-checkbox datapointcheck" />
+       <label for="is-cluster-form" class="css-label">View Clusters</label>
+    <div>
+			  <!-- <button class="btn btn-default btn-mapplotterbutton dropdown-toggle" type="button" id="exportdropup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Export  <span class="caret"></span>
+        </button> -->
+        <button id="editLocations" type="button" class="btn btn-default btn-mapplotterbutton mb-1">Edit Locations</button>
+        <button id="listViewPlot" type="button" class="btn btn-default btn-mapplotterbutton mb-1">Plot on Map</button>		
+		</div>	 
+			<ul class="dropdown-menu" aria-labelledby="exportdropup">
+			
+			  </ul>
+	    </div>
+		
+		
+	</div>
+</div>

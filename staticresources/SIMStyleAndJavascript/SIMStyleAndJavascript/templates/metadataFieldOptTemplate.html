@@ -1,0 +1,4 @@
+<option value="Select">Select</option>
+<% _.each(data, function(dObj){ %>
+<option data-apiname="<%= dObj.Name %>" data-dtype="<%= dObj.dataType %>" value="<%= dObj.Name %>"><%= dObj.label %></option>
+<% }); %>

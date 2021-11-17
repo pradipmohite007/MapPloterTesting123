@@ -1,0 +1,91 @@
+<div id="<%= id %>" class="gmWrapper">
+   <div class="infoWrapper">
+   
+	  <% if(data && data.Label){ %>
+	  <h5 class="infopopup-title"><a class="accLink" data-id="<%= data.RecordID %>" target="_blank" href="/<%= data.RecordID %>"><%= data.Label %></a></h5>
+	  <% } else { %>
+	  <h5 class="infopopup-title">Current Location</h5>
+	  <% } %>
+	  <div class="tab-header pull-left">
+		 <span class="selected" data-section="section-1">Overview</span>
+		 <span data-lat="<%= data.Latitude %>" data-lng="<%= data.Longitude %>" data-section="section-2">Weather</span>
+		<!--Commented Details tab 8/3/21-->
+		 <!--<span data-lat="<%= data.Latitude %>" data-lng="<%= data.Longitude %>" data-section="section-4">Details</span>-->
+		 <span style="border-right: none;" data-lat="<%= data.Latitude %>" data-lng="<%= data.Longitude %>" data-section="section-3">Food/Stay</span>
+		 <!--<span data-section="section-4">Search</span> -->
+	  </div>
+	  <div class="tabbedPanelContainer">
+		 <div class="tabbedPanel" id="section-1">
+			<% if(data && data.RecordID){ %>
+			<!-- <div class="description-panel">
+			   <span class="title">Account Information</span>
+			   <div class="disTable">
+				   <div class="leftCell">
+					  <!--<div class="row-holder"> 
+						   <span class="subTitle">Account Name</span>
+						   <p class="description">
+							   <b><a href="/<%= data.RecordID %>" target="_blank"><%= data.Label %></a></b>
+						   </p>
+					  </div>
+				   </div>
+			   </div>-->
+			<!--Address Information-->
+			<div class="description-panel">
+			   <span class="title">Location Details</span>
+			   <div class="disTable">
+				  <div class="leftCell">
+					 <div class="row-holder">
+						<!-- <span class="subTitle">Billing Address</span> -->
+						<span class="subTitle">Address</span>
+						<!-- <p class="description"><%= data.Address %></p> -->
+						<p class="description">
+						   <%= data.Street %>&#44; 
+						   <%= data.City %>&#44; 
+						   <%= data.Postal_Code %>&#44; 
+						   <%= data.State %>&#44; 
+						   <%= data.Country %>&middot;
+						</p>
+					 </div>
+					 <div class="row-holder">
+						<span class="subTitle">Entity Name</span>
+						<p class="description"><%= data.Entity %></p>
+					 </div>
+				  </div>
+			   </div>
+			   <hr class="data-point-break-line" />
+			</div>
+			<% } %>
+			<div class="description data-point-break">
+			   <span class="title">Nearby Data Points</span>
+			   <span class="data-point-break-caption">Specify a radius to view data points in this vicinity.</span>
+			   <input id="radius<%= id %>" class="form-control distance-radius" type="text" placeholder="Radius"/>
+			   <select id="unit<%= id %>" class="form-control distance-unit">
+			          <option>mi</option>
+				  <option>km</option>
+		        </select>
+			   <button class="btn btn-mapplotterbutton" id="view<%= id %>">View Data Points</button>
+			   <span id="radError<%= id %>" class="text-danger"></span>
+			</div>
+		 </div>
+		 <div class="tabbedPanel" id="section-2" style="display:none;">
+			<!-- # weatherTemplate will render here -->
+			Loading...
+		 </div>
+		 <div class="tabbedPanel" id="section-3" style="display:none;">
+			<!-- # foodStayTemplate will render here -->
+			Loading...
+		 </div>
+		<div class="tabbedPanel" id="section-4" style="display:none;">
+			<!-- # custom Details Template will render here -->
+			Loading...
+		 </div>	
+		 <!--<div class="tabbedPanel" id="section-4" style="display:none;">
+			<div class="adv-search-container">
+				<i style="display:none" id="advUserSearchButton" class="fa fa-search icon-search"></i>
+				<input class="form-control list-search-input" id="resultSearch" placeholder="Search" type="text">
+            </div>
+			<div class="srch-Result-block"style="display:none" id="userSearchResultCont">Loading...</div>
+		 </div>-->
+	  </div>
+   </div>
+</div>

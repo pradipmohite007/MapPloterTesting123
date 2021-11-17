@@ -1,0 +1,9 @@
+<% _.each(data, function(parentData, pindex){ %>
+<div class="inner-list">
+	<input type="checkbox" id="panel3<%= parentData.Id %>" class="css-checkbox" />
+	<label for="panel3<%= parentData.Id %>" class="css-label"><% if(parentData.SequenceNumber){ %><%= parentData.SequenceNumber %>.<% } %> <%= parentData.Label %></label>
+	<%  var dObj = _.findWhere(dataObjects, {"Entity": parentData.Entity});
+		if(dObj){ var dIndex = dObj.Pin_No } %>
+	<i data-markerid="<%= parentData.Id %>" class="marker marker-<%= dIndex %> animateMarker"></i>
+</div>
+<% }); %>

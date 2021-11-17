@@ -1,0 +1,13 @@
+<div class="panel-title">
+	<p>Select data point</p>
+	<span id="saveObjSelection" class="custom-btn saveBtn">Save</span>
+</div>
+<div class="data-point-holder">
+<% _.each(data, function(dataObj){ %>
+	<div class="inner-list">
+		<input type="checkbox" class="css-checkbox" id="dp<%= dataObj.Pin_No %>"/>
+		<label data-val="<%= dataObj.Entity %>" class="css-label" for="dp<%= dataObj.Pin_No %>"><%= dataObj.Entity %></label>
+		<i class="marker marker-<%= dataObj.Pin_No %>"></i>
+	</div>
+<% }); %>
+</div>

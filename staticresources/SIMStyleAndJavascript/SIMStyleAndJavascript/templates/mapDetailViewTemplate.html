@@ -1,0 +1,161 @@
+<div id="leftSideControl" class="bs get-driection-wrapper">
+	<div class="col-sm-12 get-direction-tab">
+		<div class="panel panel-default mapdirectional-panel">
+			<div class="panel-heading map-heading">
+				<ul class="nav nav-pills nav-fill tab-style" role="tablist">
+					<!--Code added by Rakesh :Directions tab is hidden now. Removed title from below-->
+					<li class="nav-item mdTab active" data-panel="panel-1" role="presentation">
+						<a class="nav-link rounded-0" href="javascript:void(0);" title="">
+						<img src="<%= pinURL %>/SIMStyleAndJavascript/images/pin_points_icon.png"></a>
+					</li>
+					<!--Code added by Rakesh to hide Get Directions tab -->
+					
+					<li class="nav-item mdTab" data-panel="panel-2" role="presentation">
+						<a class="nav-link rounded-0" href="javascript:void(0);" title="Get Directions">
+						<img src="<%= pinURL %>/SIMStyleAndJavascript/images/icon-direction.png"/>   
+						</a>
+					</li>
+					
+					<li class="nav-item minimizer" role="presentation">
+						<a class="nav-link rounded-0" href="javascript:void(0);">
+							<i class="fa collapse-arrow fa-angle-up white"></i>
+	                    </a>
+					</li>
+				</ul>
+			</div>
+			<div class="panel-body custom-panel-body">
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active panel-container" id="panel-1">
+						<div class="col-sm-12 searchResult-panel">
+							<div class="selectall-wrapper">
+								<!-- <input class="css-checkbox" id="selectAllPanelF" type="checkbox"/>
+								<label class="css-label" for="selectAllPanelF"> Select All </label> -->
+								<p class="results-info pull-right">
+									<% if(data){ %>
+									<em><span id="tCnt"><%= data.length %></span> Results</em>
+									<% } %>
+								</p>
+							   <!--  <a id="clrSelectionMap" href="javascript:void(0);" class="btn btn-primary btn-sm clear-allbtn pull-right">Clear All</a> -->
+							</div>
+						</div>
+						<div id="markerList" class="col-sm-12 col-12 no-padding marker-list">
+							<ul class="list-group">
+								<% _.each(data, function(parentDataObj, parentDataIndex){ %>
+								<% var dObj = _.findWhere(dataObjects, {"Entity": parentDataObj.Entity});
+									if(dObj){ var dIndex = dObj.Pin_No } %>
+								<li id="panel<%= parentDataObj.Id %>" class="list-group-item">
+									<% if(parentDataObj.Color && parentDataObj.Color !== null){ %>
+									<i data-markerid="<%= parentDataObj.Id %>" class="fa fa-map-marker paneli customMarker animateMarker" style="color: <%= parentDataObj.Color %>;"></i>
+									<% } else { %>
+										<i data-markerid="<%= parentDataObj.Id %>" class="paneli marker marker-<%= dIndex %> animateMarker"></i>
+									<% } %>
+									<input type="checkbox" data-markerid="<%= parentDataObj.Id %>" id="parentDataCheck<%= parentDataObj.Id %>" class="css-checkbox panelfcheck" />
+									<label for="parentDataCheck<%= parentDataObj.Id %>" class="css-label data-points"><% if(parentDataObj.SequenceNumber){ %><%= parentDataObj.SequenceNumber %>.<% } %> <%= parentDataObj.Label %></label>
+								</li>
+								<% }); %>
+							</ul>
+						</div>
+						<div class="row panel-footer-section">
+							
+							
+							<div class="col-6">
+								<button id="editDatapoints" type="button" class="btn btn-default pull-right btn-mapplotterbutton">Edit Data Points</button>
+							</div>
+							<div class="col-6">
+								<button id="getDirections" type="button" class="btn btn-default pull-right btn-mapplotterbutton">Get Directions</button>
+							</div>
+							<!--<div class="col-6">
+								<button id = "exportDrawPoints" type="button"class="btn btn-default btn-mapplotterbutton">Export</button>
+							</div>
+							<div class="col-6">
+								<button id="massUpdateDrawPoints" type="button" class="btn btn-default btn-mapplotterbutton">Mass Update</button>
+							</div>-->
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane panel-container" id="panel-2">
+						<div class="getdir-wrapper" id="get-dirlist">
+							<div id="locationContainer" class="col-sm-12 direction-list-view no-space">
+								<!-- #wayPointsTemplate will render here -->
+								<div class="noDirections">
+									<p>Please select origin and destination points for directions.</p>
+								</div>
+							</div>
+							<div class="col-sm-12 no-padding">
+								<div class="add-destination-wrapper" style="display: none;">
+									<a id="addDestination" href="javascript:void(0);" class="btn btn-primary btn-sm adddestination-btn"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Destination</a>
+								</div>
+							</div>
+							<div id="get-map-direction" class="get-direction-map-route">
+								<!-- Directions will render here -->
+							</div>
+						</div>
+						<div class="exportPdf-wrapper">
+							<div class="col-sm-12 col-12">
+							    <a id="gotoGmap" href="" class="btn btn-default pull-right btn-mapplotterbutton pull-right"><i class="fa fa-map white" aria-hidden="true"></i> Open in Gmap</a>
+								<button id="printRoute" type="button" class="btn btn-default pull-right btn-mapplotterbutton pull-right hidden-sm hidden-xs"><i class="fa fa-print white" aria-hidden="true"></i> Print </button>
+							</div>
+						</div>
+						<div id="addDestinationPanel" class="add-destination-panel-wrapper" style="display:none;">
+							<div class="destination-header">
+								<!-- <img id="closeWaypoint" src="<%= pinURL %>/SIMStyleAndJavascript/images/close_icon.png" class="location-cancel closeicon mCS_img_loaded" action="cancel"> -->
+								<h4 class="modal-title">Add Destination</h4>
+							</div>
+							<div class="map-search-container">
+								<i class="fa fa-search icon-search"></i>
+								<input class="form-control" id="addDestSearch" placeholder="Search" type="text"/>
+							</div>
+							<div id="destMarkerList" class="content-2 col-sm-12 col-12 no-padding add-makerlist">
+								<ul class="list-group">
+									<% _.each(data, function(parentDataObj, parentDataIndex){ %>
+									<% var dObj = _.findWhere(dataObjects, {"Entity": parentDataObj.Entity});
+									if(dObj){ var dIndex = dObj.Pin_No } %>
+									<li id="dest<%= parentDataObj.Id %>" class="list-group-item">
+										<% if(parentDataObj.Color && parentDataObj.Color !== null){ %>
+										<i data-markerid="<%= parentDataObj.Id %>" class="fa fa-map-marker desti customMarker" style="color: <%= parentDataObj.Color %>;"></i>
+										<% } else { %>
+											<i data-markerid="<%= parentDataObj.Id %>" class="desti marker marker-<%= dIndex %>"></i>
+										<% } %>
+										<input type="checkbox" data-markerid="<%= parentDataObj.Id %>" id="parentDestCheck<%= parentDataObj.Id %>" class="css-checkbox destCheck" />
+										<label for="parentDestCheck<%= parentDataObj.Id %>" class="css-label data-points destLable"><%= parentDataObj.Label %></label>
+									</li>
+									<% }); %>
+								</ul>
+							</div>
+							<div class="col-sm-12 col-12" style="padding:10px 15px;">
+								<button id="addWaypoints" type="button" class="btn btn-default btn-mapplotterbutton pull-right">ADD</button>
+								<button id="cancelWayPoints" type="button" class="btn btn-default btn-cancel pull-right">Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div id="drawAreaControl">
+	<button class="btn btn-default btn-mapplotterbutton" id="clearDraw">Clear All</button>
+</div> -->
+<div id="drawAreaControl" class="map-selection-tool-panel">
+	<div class="draw-tool-panel">                
+		<div id="drawToggle"class="draw-area-button">
+			 <span>Draw Area</span>
+		</div>
+		<div id= "toggleDiv" class="inner-tool-bar" style="display:none;">
+			<div class="drawing-tool dragger-active" id="dragger"></div>
+			<div data-tool="circle" id="draw-circle" class="drawing-tool"></div>
+			<div data-tool="square" id="draw-square" class="drawing-tool"></div>
+			<div data-tool="polygon" id="draw-poly" class="drawing-tool"></div>                    
+			<div id="clear-drawing" class="clear-all">Clear All</div>
+		</div>
+	</div>
+	<!-- <div class="more-plot-btn">
+	    <div id="printMap"class="draw-area-button">
+			Save Map<span></span>
+		</div>
+	</div> -->
+	<div class="more-plot-btn">
+	    <div id="showMore"class="draw-area-button">
+			Plot more<span></span>
+		</div>
+	</div>
+</div>

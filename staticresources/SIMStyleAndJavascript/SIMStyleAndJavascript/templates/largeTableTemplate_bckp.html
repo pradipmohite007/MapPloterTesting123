@@ -1,0 +1,36 @@
+<table id="dataPointResultTable" class="table table-striped dt-responsive dataTable">
+	<thead>
+		<tr>
+			<th>
+				<div class="select-all-container">
+					<input type="checkbox" id="selectAllDataPoints" class="css-checkbox" />
+					<label for="selectAllDataPoints" class="css-label"></label>
+				</div>
+			</th>
+			<th>Data Point Name <!-- <a id="clrSelection" href="javascript:void(0);" title="clear button" class="btn btn-primary btn-sm btn-clears"> Clear All</a> --></th>
+			<th>Type</th>
+		</tr>
+	</thead>
+	<tbody id="dpTableBody">
+	<% var cData = Object.keys(data); console.log(cData);
+		for(var i=0, len=cData.length; i<len; i++){ %>
+		<% _.each(data[cData[i]], function(dataObj){ %>
+		<tr>
+			<td>
+				<input type="checkbox" id="<%= dataObj.Id %>" class="css-checkbox datapointcheck" />
+				<label for="<%= dataObj.Id %>" class="css-label">
+			</td>
+			<td>
+				<span><%= dataObj.Label %></span>
+			</td>
+			<td>
+				<% var dObj = _.findWhere(dataObjects, {"Entity": dataObj.Entity});
+				   if(dObj){ var dIndex = dObj.Pin_No } %>
+				<i class="marker marker-<%= dIndex %>"></i>
+				<span class="hidden"><%= dataObj.Entity %></span>
+			</td>
+		</tr>
+		<% }); %>
+	<% } %>
+	</tbody>
+</table>

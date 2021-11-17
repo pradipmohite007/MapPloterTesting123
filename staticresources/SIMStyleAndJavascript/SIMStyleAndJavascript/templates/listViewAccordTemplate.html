@@ -1,0 +1,70 @@
+<div class="panel-group" id="listAccordion">
+  <% var countryArr = _.sortBy(Object.keys(data));
+	  for(var ci = 0; ci<countryArr.length; ci++){
+   %>
+	<!-- repeat this start -->
+	<div class="panel panel-default countryPanel">
+		<div class="panel-heading">                
+			<h4 class="panel-title">
+				<input data-index="<%= ci %>" data-statecount="<%= Object.keys(data[countryArr[ci]]).length %>" type="checkbox" id="countryCheck<%= ci %>" class="css-checkbox countryCheck" />
+				<label for="countryCheck<%= ci %>" class="css-label radGroup1"></label>
+				<a data-toggle="collapse" data-parent="#listAccordion" href="#collapse<%= ci %>" class="fa collapsed">
+					<span class="panel-label country"><%= countryArr[ci] %></span>
+					<!-- <span class="selected-locations"><span id="locationsSelected<%= ci %>">0</span> locations selected out of <span id="outOfSpan<%= ci %>"></span></span> -->
+					<!-- <i class="fa fa-chevron-down"></i> -->
+				</a>
+			</h4>
+		</div>
+		<!--/.panel-heading -->
+		<div id="collapse<%= ci %>" class="panel-collapse collapse">
+			<div class="panel-body">
+				<!-- nested -->
+				<div class="panel-group innerpanel" id="listSecondInnerAccordion<%= ci %><%= si %>">
+					<% var stateArr = _.sortBy(Object.keys(data[countryArr[ci]]));
+					   for(var si=0; si<stateArr.length; si++){
+					%>
+					<!-- inner-repeat this start -->
+					<div class="panel panel-default statePanel">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<input data-countryindex="<%= ci %>" data-index="<%= si %>" data-citycount="<%= Object.keys(data[countryArr[ci]][stateArr[si]]).length %>" type="checkbox" id="stateCheck<%= ci %><%= si %>" class="css-checkbox stateCheck" />
+								<label for="stateCheck<%= ci %><%= si %>" class="css-label radGroup1"></label>
+								<a data-toggle="collapse" data-parent="#listSecondInnerAccordion<%= ci %><%= si %>" href="#collapseinner2-1<%= ci %><%= si %>" class="fa collapsed">
+								   <span class="panel-label state"><%= stateArr[si] %></span>
+								   <!-- <i class="fa fa-chevron-down"></i> -->
+								</a>
+						   </h4>
+						</div>
+						<!--/.panel-heading -->
+						<div id="collapseinner2-1<%= ci %><%= si %>" class="panel-collapse collapse">
+							<div class="panel-body">
+								<% var cityArr = _.sortBy(data[countryArr[ci]][stateArr[si]], 'CityName');
+								   for(var cti = 0; cti<cityArr.length; cti++){
+								%>
+								<div class="city-list">
+								   <input data-cid="<%= cityArr[cti].CityKey %>" data-countryindex="<%= ci %>" data-stateindex="<%= si %>" type="checkbox" data-index="<%= cti %>" id="cityCheck<%= ci %>_<%= si %>_<%= cti %>" class="css-checkbox cityCheck" />
+								   <label for="cityCheck<%= ci %>_<%= si %>_<%= cti %>" class="css-label radGroup1 panel-label city"><%= cityArr[cti].CityName %>
+								   </label>
+							   </div>
+							   <% } %>
+							</div>
+							<!--/.panel-body -->
+						</div>
+						<!--/.panel-collapse --> 
+					</div>
+					<!-- /.panel --> 
+					<!-- inner-repeat this end -->
+					<% } %>
+				</div>
+				<!-- /.panel-group -->
+				<!-- nested -->
+			</div>
+			<!--/.panel-body -->
+		</div>
+		<!--/.panel-collapse -->
+	</div>
+	<!-- repeat this end -->
+	<!-- /.panel -->
+	<% } %>
+</div>
+<!-- /.panel-group -->

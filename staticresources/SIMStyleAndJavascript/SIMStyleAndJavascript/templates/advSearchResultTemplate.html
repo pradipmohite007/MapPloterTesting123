@@ -1,0 +1,39 @@
+<table id="searchResultTable" class="table table-striped dt-responsive dataTable">
+	<thead class="tableheadbg">
+		<tr>
+			<th>
+				<div class="select-all-container">
+					<input type="checkbox" id="selectAllDPSrch" class="css-checkbox" />
+					<label for="selectAllDPSrch" class="css-label"></label>
+				</div>
+			</th>
+			<th>Data Point Name</th>
+			<th>Type</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% _.each(data, function(dataObj){ %>
+		<tr>
+			<td>
+				<input type="checkbox" id="<%= dataObj.Id %>" class="css-checkbox dpCheckSrch" />
+				<label for="<%= dataObj.Id %>" class="css-label">
+			</td>
+			<td>
+				<span><%= dataObj.Label %></span>
+			</td>
+			<td>
+				<% var dObj = _.findWhere(dataObjects, {"Entity": dataObj.Entity});
+				   if(dObj){ var dIndex = dObj.Pin_No } %>
+				<i class="marker marker-<%= dIndex %>"></i>
+				<span class="hidden"><%= dataObj.Entity %></span>
+			</td>
+		</tr>
+		<% }); %>
+	</tbody>
+</table>
+<div class="d-flex justify-content-between action-btn-wrapper">
+    <input type="checkbox" id="is-cluster-form" class="css-checkbox datapointcheck" />
+    <label for="is-cluster-form" class="css-label">View Clusters</label>
+	<button id="plotOnMapSrch" type="button" class="btn btn-default btn-mapplotterbutton">Plot on Map</button>
+	<!-- <button id="cancelSrch" type="button" class="btn btn-default pull-right btn-cancel">Cancel</button> -->
+</div>

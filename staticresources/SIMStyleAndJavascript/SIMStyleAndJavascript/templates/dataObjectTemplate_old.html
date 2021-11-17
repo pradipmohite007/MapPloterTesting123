@@ -1,0 +1,8 @@
+<% _.each(data, function(dataObj){ %>
+	<!-- class for quuick fix. Remove it -->
+	<div class="testClass">
+		<i class="marker marker-<%= dataObj.Pin_No %>"></i>
+		<span data-val="<%= dataObj.Entity %>" class="data-point-name"><%= dataObj.Entity %></span>
+		<span data-name="<%= dataObj.Entity %>" class="data-point-cross">x</span>
+	</div>
+<% }); %>

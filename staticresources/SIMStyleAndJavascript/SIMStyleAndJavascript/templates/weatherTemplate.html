@@ -1,0 +1,66 @@
+<div class="box-wrapperr swiper-container">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide boxed">
+			<span class="boxed-title">Now</span>
+			<div class="wIcon" data-cid="icon0" data-icon="<%= weatherdata.daily.data[0].icon %>">
+				<canvas id="icon0"></canvas>
+			</div>
+			<span class="weather-text"><%= weatherdata.daily.data[0].summary %></span>
+			<div class="parameter-section">
+				<div class="ttl"><strong>Wind</strong></div>
+				<div class="value"><%= weatherdata.daily.data[0].windSpeed %> mi/h</div>
+			</div>
+			<div class="parameter-section">
+				<div class="ttl"><strong>Temperature</strong></div>
+				<div class="temp-table">
+					<div class="temp-min">Min</div>
+					<div class="temp-max pad-left">Max</div>
+				</div>
+				<div class="temp-table">
+					<div class="temp-value"><%= weatherdata.daily.data[0].temperatureMin %> &#176;F</div>
+					<div class="temp-value  pad-left"><%= weatherdata.daily.data[0].temperatureMax %> &#176;F</div>
+				</div>
+			</div>
+			<div class="parameter-section">
+				<div class="ttl"><strong>Cloud Cover</strong></div>
+				<div class="parameter-value"><%= weatherdata.daily.data[0].cloudCover %>%</div>
+			</div>
+		</div>
+		<% _.each(weatherdata.daily.data, function(weatherObj, wi){ %>
+		<% if(wi !==0 && wi < 6){ %>
+		<div class="swiper-slide boxed">
+			<span class="boxed-title"><%= new Date(weatherObj.time*1000).toDateString() %></span>
+			<div class="wIcon" data-cid="icon<%= wi %>" data-icon="<%= weatherObj.icon %>">
+				<canvas id="icon<%= wi %>"></canvas>
+			</div>
+			<span class="weather-text"><%= weatherObj.summary %></span>
+			<div class="parameter-section">
+				<div class="ttl"><strong>Wind</strong></div>
+				<div class="value"><%= weatherObj.windSpeed %> mi/h</div>
+			</div>
+			<div class="parameter-section">
+				<div class="ttl"><strong>Temperature</strong></div>
+				<div class="temp-table">
+					<div class="temp-min">Min</div>
+					<div class="temp-max pad-left">Max</div>
+				</div>
+				<div class="temp-table">
+					<div class="temp-value"><%=weatherObj.temperatureMin %> &#176;F</div>
+					<div class="temp-value  pad-left"><%= weatherObj.temperatureMax %> &#176;F</div>
+				</div>
+			</div>
+			<div class="parameter-section">
+				<div class="ttl"><strong>Cloud Cover</strong></div>
+				<div class="parameter-value"><%= weatherObj.cloudCover %>%</div>
+			</div>
+		</div>
+		<% } %>
+		<% }); %>       
+	</div>
+	<!-- Add Pagination -->
+	<!-- <div class="swiper-pagination"></div> -->
+	<!-- Add Arrows -->
+	<div class="swiper-button-next"></div>
+	<div class="swiper-button-prev"></div>
+	<div align="center"><a href="https://darksky.net/poweredby">Powered by DarkSky</a></div>
+</div>

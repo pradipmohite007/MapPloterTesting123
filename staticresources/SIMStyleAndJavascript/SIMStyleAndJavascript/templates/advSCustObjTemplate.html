@@ -1,0 +1,10 @@
+<ul class="list-unstyled list-inline searchChecklist">
+	<% _.each(data, function(dObj){ %>
+	<% if(dObj.IsGeocoded == true){ %>
+	<li class="list-inline-item"> 
+		<input id="cobj<%= dObj.Pin_No %>" class="css-checkbox advCustObj" type="checkbox">
+		<label for="cobj<%= dObj.Pin_No %>" data-val="<%= dObj.Entity %>" class="css-label"><%= dObj.Entity.replace('__c','').replace('eXMPP__','') %></label>
+	</li>
+	<% } %>
+	<% }); %>
+</ul>

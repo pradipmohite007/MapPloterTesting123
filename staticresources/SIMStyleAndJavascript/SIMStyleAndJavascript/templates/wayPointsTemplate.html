@@ -1,0 +1,28 @@
+<ul id="locDraggable" class="add-location-wrapper">
+	<% var isMultiple = false;
+		if(data.length > 2){
+			isMultiple = true;
+		}
+		var dataLen = data.length;
+	_.each(data, function(locObj, i){ %>
+	<li class="add-location <% if(isMultiple){ %> dragLoc <% } %>">
+		<span class="location-pin">                
+			<% if(i == dataLen-1){ %>
+			<i class="fa fa-map-marker destination-icon last-point"></i>
+			<% } else { %>
+			<i class="fa fa-circle-o points"></i>
+			<% } %>
+		</span>
+		<span class="location-name"><%= locObj.Label %></span>
+		<span class="location-address"><%= locObj.address %></span>
+		<% if(isMultiple){ %>
+		<img data-index="<%= i %>" src="<%= pinURL %>/SIMStyleAndJavascript/images/close_icon.png" class="location-cancel wpCross">
+		<% } %>
+	</li>
+	<% }); %>
+</ul>
+<% if(!isMultiple){ %>
+<div id="swapDir" class="widget-swap-direction">
+	<img class="mCS_img_loaded" src="<%= pinURL %>/SIMStyleAndJavascript/images/swap_icon.png"alt="swap-direction-icon">
+</div>
+<% } %>

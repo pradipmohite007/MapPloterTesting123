@@ -1,0 +1,22 @@
+<div class="panel-title">
+	<p>Add Data Points</p>
+ </div>
+<div class="data-point-holder">                
+	<ul class="list-unstyled">
+		<% _.each(data, function(dataObj){ %>
+		<% if(dataObj.IsGeocoded == true){ %>
+		<li class=inner-list>
+			<input type="checkbox" class="css-checkbox" id="dp<%= dataObj.Pin_No %>">
+			<label data-val="<%= dataObj.Entity %>" class="css-label" for="dp<%= dataObj.Pin_No %>"><%= dataObj.Entity.replace('__c','').replace('eXMPP__','') %></label>
+			<i class="marker marker-<%= dataObj.Pin_No %>"></i>
+		</li>
+		<% } %>
+		<% }); %>
+	</ul>
+	
+	<!-- <span id="saveObjSelection" class="btn btn-primary btn-sm saveBtn">Save</span> -->
+</div>
+<div class="d-flex justify-content-end action-btn-wrapper">
+	<button id="saveObjSelection" type="button" class="btn btn-default btn-mapplotterbutton btn-done">Done </button>
+	<button id="cancelObjSelection"  type="button" class="btn btn-default btn-cancel btn-remove">Cancel</button>
+</div> 

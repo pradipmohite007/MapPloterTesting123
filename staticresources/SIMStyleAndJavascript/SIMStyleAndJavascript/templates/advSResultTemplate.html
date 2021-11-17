@@ -1,0 +1,10 @@
+
+<div class="panel-body">
+	<% _.each(data, function(result){ %>
+	<div class="inner-list">
+		<input type="checkbox" id="result-<%= result.Id %>" class="css-checkbox" />
+		<label for="result-<%= result.Id %>" class="css-label"><%= result.Label %></label>
+		<i class="marker marker-0"></i>
+	</div>
+	<% }); %>
+</div>

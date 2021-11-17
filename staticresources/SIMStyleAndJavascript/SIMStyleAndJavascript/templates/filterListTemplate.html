@@ -1,0 +1,17 @@
+<% _.each(data, function(fObj){ %>
+<tr>
+    <td><%= fObj.reportName %></td>
+    <td><%= fObj.description %></td>
+    <td class="text-center">
+        <a href="javascript:void(0);" class="editFilter" data-filterid="<%= fObj.reportId %>" title="Edit Filter">
+            <i class="fa  fa-2x fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+        </a>
+        <a href="javascript:void(0);" class="deleteFilter" data-filterid="<%= fObj.reportId %>" title="Delete Filter">
+            <i class="fa fa-2x fa-trash-o trash-icon" aria-hidden="true"></i>
+        </a>
+		  <a href="javascript:void(0);" class="cloneFilter" data-filterid="<%= fObj.reportId %>" title="Clone Filter">
+            <i  class="fa fa-clone" aria-hidden="true"></i>
+        </a>
+    </td>
+</tr>
+<% }); %>

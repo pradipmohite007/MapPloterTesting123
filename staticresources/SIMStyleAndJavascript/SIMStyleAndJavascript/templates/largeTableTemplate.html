@@ -1,0 +1,33 @@
+<table id="dataPointResultTable" class="table table-striped dt-responsive dataTable">
+	<thead>
+		<tr>
+			<th>
+				<div class="select-all-container">
+					<input type="checkbox" id="selectAllDataPoints" class="css-checkbox" />
+					<label for="selectAllDataPoints" class="css-label"></label>
+				</div>
+			</th>
+			<th>Data Point Name</th>
+			<th>Type</th>
+		</tr>
+	</thead>
+	<tbody id="dpTableBody">
+	<% for(var i=0,len=data.length; i<len; i++){ %>
+		<tr>
+			<td>
+				<input type="checkbox" id="<%= data[i].Id %>" class="css-checkbox datapointcheck" />
+				<label for="<%= data[i].Id %>" class="css-label">
+			</td>
+			<td>
+				<span><%= data[i].Label %></span>
+			</td>
+			<td>
+				<% var dObj = _.findWhere(dataObjects, {"Entity": data[i].Entity});
+				   if(dObj){ var dIndex = dObj.Pin_No } %>
+				<i class="marker marker-<%= dIndex %>"></i>
+				<span class="hidden"><%= data[i].Entity %></span>
+			</td>
+		</tr>
+	<% } %>
+	</tbody>
+ </table>

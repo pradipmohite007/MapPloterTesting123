@@ -1,0 +1,9 @@
+<% _.each(data, function(wpObj, i){ %>
+	<div class="added-location">
+		<span class="location-pin"><i class="fa fa-circle-o middle-point"></i></span>
+		<span id="wplocation<%= i %>" class="location-name"><%= wpObj.locName %></span>
+		<span id="wpaddress<%= i %>" class="location-address"><%= wpObj.address %></span>
+		<img data-index="<%= i %>" src="{!JSENCODE(URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/close_icon.png'))}" class="location-cancel wpCross"/>
+	</div>
+	<div data-index="<%= i %>" class="separator"></div>
+<% }); %>

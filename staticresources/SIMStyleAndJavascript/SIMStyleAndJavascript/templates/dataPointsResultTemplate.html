@@ -1,0 +1,36 @@
+<div class="select-all-container">
+	<input type="checkbox" id="selectAllDataPoints" class="css-checkbox" />
+	<label for="selectAllDataPoints" class="css-label">Select All </label>                
+	<div class="searchfield">
+	<input id="searchList" type="text" placeholder="Search" class="round"/>   
+		<button value="" class="corner" >
+			<i class="fa fa-search"></i>
+		</button>  
+	</div>       
+	<span class="results-no pull-right">
+		<span id="outOfDP" data-total="<%= data.length %>">0</span> Results Selected out of <%= data.length %>
+	</span>
+</div>
+<div class="results-accordion-holder">
+	<div class="panel-group" id="resultsAccordion" role="tablist" aria-multiselectable="true" style="height:500px;">
+	<%  _.each(data, function(dataPointObj, dataPointIndex){ %>
+		<div class="panel">
+			<div class="panel-heading" role="tab" >
+				<h4 class="panel-title">
+					<input type="checkbox" id="<%= dataPointObj.Id %>" class="css-checkbox datapointcheck" />
+					<label for="<%= dataPointObj.Id %>" class="css-label radGroup1"></label>
+					<a data-toggle="collapse" data-parent="#resultsAccordion" href="#childs<%= dataPointIndex %>" aria-expanded="true" aria-controls="collapse">
+						<span class="panel-label"><% if(dataPointObj.SequenceNumber){ %><%= dataPointObj.SequenceNumber %>.<% } %> <%= dataPointObj.Label %></span>
+						<% var dObj = _.findWhere(dataObjects, {"Entity": dataPointObj.Entity});
+						   if(dObj){ var dIndex = dObj.Pin_No } %>
+						<% if(typeof(dataPointObj.ChildrenMapPoint) !== 'undefined' && dataPointObj.ChildrenMapPoint !== null && dataPointObj.ChildrenMapPoint.length > 0){ %>
+						<i class="fa fa-chevron-down"></i>
+						<% } %>
+						<i class="result-marker marker marker-<%= dIndex %>"></i>
+					</a>
+				</h4>
+			</div>
+		</div>
+	<% }); %>
+	</div>
+</div>

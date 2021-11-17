@@ -1,0 +1,9 @@
+<% _.each(data, function(dataObj){ %>
+   <% if(dataObj.IsGeocoded == true){ %>
+	<li class="legendObj">
+		<i class="marker marker-<%= dataObj.Pin_No %>"></i>
+		<span data-val="<%= dataObj.Entity %>" class="data-point-name"><%= dataObj.Entity %></span>
+		<span data-name="<%= dataObj.Entity %>" class="data-point-cross">x</span>
+	</li>
+   <% } %>
+<% }); %>

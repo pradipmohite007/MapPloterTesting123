@@ -1,0 +1,22 @@
+<table class="table table-hover customDetails-table" >
+	<!--<thead>
+		<tr>
+			<th>Field Lable</th>
+			<th>Value</th>
+		</tr>
+	</thead>-->
+	<tbody>
+	
+	<% _.each(data, function(Objkey, value){ %>
+		<tr style="border:0px">
+			<td>
+			<span style="font-weight: bold;"><%= value %></span><br>
+			<span><%= Objkey %></span>
+			</td>
+			<!--<td>
+			<span><%= Objkey %></span>
+			</td>-->
+		</tr>
+	<% }); %>
+	</tbody>
+</table>

@@ -1,0 +1,24 @@
+<div id="reportPanel" class="plotreport-wrapper d-flex flex-column">
+	<div class="d-flex justify-content-between align-items-center p-3 p-xl-4 rptpanel-title">
+			<p class="sub-title m-0">Select filter to view on map</p>
+			<a href="javascript:void(0);" class="queryLink d-flex align-items-center" id="addNewFilter" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal"><i class="fa fa-plus"></i> Manage Filter</a>
+	</div>
+	<div class="rptform-wrapper p-3 p-xl-2">
+			<div class="form-group row flex-wrap align-items-center no-gutters mb-0">
+				<!-- <label for="name" class="col-xs-3 col-sm-3 col-md-2 lblname no-padding">Name</label> -->
+				<div class="col">
+					<select id="reportList" class="form-control select-control">
+						<% _.each(data, function(report){ %>
+						<option data-filtertype="<%= report.filterType %>" value="<%= report.reportId %>"><%= report.reportName %></option>
+						<% }); %>
+					</select>
+				</div>
+				<div class="col text-right">
+					<button id="getReportData" type="button" class="btn btn-default btn-mapplotterbutton">Show Results</button>
+				</div>
+			</div>
+	</div>
+	<div id="reportTableContainer" class="reportTableWrapper full-ht">
+		<!-- #reportResultTemplate will render here -->
+	</div>            
+</div>

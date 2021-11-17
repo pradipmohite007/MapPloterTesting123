@@ -1,0 +1,22 @@
+<table class="table table-hover foodstay-table">
+	<!-- <thead>
+		<tr>
+			<th>Type</th>
+			<th>Name</th>
+		</tr>
+	</thead> -->
+	<tbody>
+	<% _.each(data, function(dataObj){ %>
+		<tr>
+			<td>
+				<img src="<%= dataObj.icon %>">
+			</td>
+			<td>
+			<a target="_blank" href="http://www.google.co.in/#q=<%= dataObj.name %>"><%= dataObj.name %>.</a><br/>
+			<span><%= dataObj.vicinity %></span>
+			<span><%= dataObj.formatted_address%>.</span>
+			</td>
+		</tr>
+	<% }); %>
+	</tbody>
+</table>

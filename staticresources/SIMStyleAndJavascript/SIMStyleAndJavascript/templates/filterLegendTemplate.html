@@ -1,0 +1,6 @@
+<% _.each(data, function(legendObj){ %>
+	<li class="legendObj">
+		<i class="fa fa-map-marker customMarker" style="color:<%= legendObj.color %>"></i>
+		<span title="<%= legendObj.fieldValue %>" class="data-point-name"><%= legendObj.fieldValue %></span>
+	</li>
+<% }); %>

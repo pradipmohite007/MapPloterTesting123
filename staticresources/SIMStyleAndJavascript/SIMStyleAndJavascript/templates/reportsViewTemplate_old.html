@@ -1,0 +1,28 @@
+<div class="panel-header-reports">
+	<img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/pin_points_icon.png')}"/>
+	<span class="panel-title-reports"> Others Reports</span>
+</div>
+<div>
+	<span class="subtitle-reports">Select an existing Salesforce report to plot its data on the map</span>
+	<div class="settings-object-reports geo-records-reports">
+		<!-- <form class="form-inline"> -->
+		<div class="form-group">
+			<label class="control-label float-left drop-label">Objects</label>
+		   <div class="col-md-4 col-sm-4 col-12"> 
+			<select id="reportList" class="reports float-left">
+				<% _.each(data, function(report){ %>
+				<option value="<%= report.reportId %>"><%= report.reportName %></option>
+				<% }); %>
+			</select>
+			</div>
+			<div class="col-md-3 col-sm-3 col-12">
+			<button id="getReportData" type="button" class="btn btn-default active-button-reports float-left">Show Results</button>
+			<button id="syncReport" type="button" class="btn active-button pull-right">Sync Report</button>
+		</div>
+		</div>
+		<div id="tableContainer">
+			<!-- #reportResultTemplate will render here -->
+		</div>
+		<!-- </form> -->
+	</div>
+</div>

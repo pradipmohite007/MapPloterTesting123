@@ -1,0 +1,159 @@
+<% console.log(data); %>
+<!--Direction Panel Window starts from here-->
+<div id="leftSideControl" class="direction-panel">
+<div id="gotoList" class="addBtn"></div>
+	<div class="panel-menu-bar">
+		<div class="tab tab-active" data-panel="panel-1">
+			<img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/pin_points_icon.png')}"/>
+		</div>
+		<div class="tab disabledObj" data-panel="panel-2">
+			<img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/get_direction_icon.png')}"/>
+		</div>
+		<div class="tab hidden-sm hidden-md hidden-lg advsrch" data-panel="panel-3">
+			<img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/search-icon.png')}"/>
+		</div> 
+		<div class="minimizer">
+			<img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/minimize.png')}"/>
+		</div>
+	</div>
+</div>
+<div class="direction-panel-wrapper">
+	<div class="panel-container" id="panel-1">
+		<div class="select-all-container">
+			<input class="css-checkbox" id="selectAllPanelF" type="checkbox"/>
+			<label class="css-label" for="selectAllPanelF">Select All </label>
+			<span class="results-no pull-right">
+				<span data-total="<%= data.length %>" id="totalSelected">0</span> Results Selected out of <span id="tCnt"><%= data.length %></span>
+			</span>
+		</div>
+		<div class="data-search-list">
+			<% _.each(data, function(parentDataObj, parentDataIndex){ %>
+			<div class="panel-group" role="tablist" >
+			   <div class="list-panel">
+					<div class="panel-heading" role="tab" >
+						<h4 class="panel-title">
+							<input type="checkbox" data-markerid="<%= parentDataObj.Id %>" data-parentindex="<%= parentDataIndex %>" id="parentDataCheck<%= parentDataIndex %>" class="css-checkbox panelfcheck" />
+							<label for="parentDataCheck<%= parentDataIndex %>" class="css-label radGroup1"><% if(parentDataObj.SequenceNumber){ %><%= parentDataObj.SequenceNumber %>.<% } %> <%= parentDataObj.Label %></label>
+							<% var dObj = _.findWhere(dataObjects, {"Entity": parentDataObj.Entity});
+							if(dObj){ var dIndex = dObj.Pin_No } %>
+							<i data-markerid="<%= parentDataObj.Id %>" class="paneli marker marker-<%= dIndex %> animateMarker"></i>
+						</h4>
+					</div>
+				</div>
+			</div>
+			<% }); %>
+		</div>
+		<div class="bottom-button-section">
+			<button id="getDirections" type="button" class="btn active-button disabledObj">Get Direction</button>
+			<button id="plotSelected" type="button" class="btn active-button disabledObj">Plot Selection</button>
+		</div>
+	</div>
+	<!--Tab Panel-2-->
+	<div class="panel-container" id="panel-2" style="display:none;">
+		<div class="add-location-holder">
+			<div class="added-location">
+				<span class="location-pin"><i class="fa fa-map-marker start-point"></i></span>
+				<span id="location1" class="location-name"></span>
+				<span id="address1" class="location-address"></span>
+				<!-- <img id="srcCross" src="{!JSENCODE(URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/close_icon.png'))}" class="location-cancel hidden"/> -->
+			</div>    
+		   <div class="separator"></div>
+		   <div id="wpContainer">
+				<!-- #wayPointsTemplate will render here -->
+		   </div>
+		   <div id="swapDir" class="widget-swap-direction">
+				<img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/swap_icon.png')}" alt="swap-direction-icon"/>
+		   </div>
+		   <div class="added-location">
+				<span class="location-pin"><i class="fa fa-map-marker destination-icon last-point"></i></span>
+				<span id="location2" class="location-name"></span>
+				<span id="address2" class="location-address"></span>
+				<!-- <img id="destCross" src="{!JSENCODE(URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/close_icon.png'))}" class="location-cancel hidden"/> -->
+			</div>     
+		</div>
+		<!--ADD DESTINATION PANEL::On it click LOcation Selection panel would be displayed-->
+		<div id="addDestination" class="add-destination-tab">
+			<!--<i class="fa fa-plus"></i>-->
+			 <span class="plusIcon">+</span>
+			<span class="add-text">Add Destination</span>
+		</div>                
+		<!--Add destination Panel-->
+		<div class="destination-panel">
+			<div class="panel-header">
+				<!--<i class="fa fa-close pull-right" action="cancel"></i>-->
+				<img id="closeWaypoint" src="{!JSENCODE(URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/close_icon.png'))}" class="location-cancel closeicon" action="cancel"/>
+				<!--<span>+</span>-->
+				<h4 class="modal-title">Add Destination</h4>
+			</div>
+			<div class="map-search-container">
+				<i class="fa fa-search icon-search"></i>
+				<input type="text" class="form-control" id="addDestSearch" placeholder="Search"/>
+			</div>
+			<!--Search Result-->
+			<div class="data-search-list">
+				<% _.each(data, function(parentDataObj, parentDataIndex){ %>
+				<div class="panel-group" role="tablist" >
+				   <div class="list-panel">
+						<div class="panel-heading" role="tab" >
+							<h4 class="panel-title">
+								<input type="checkbox" data-markerid="<%= parentDataObj.Id %>" data-parentindex="<%= parentDataIndex %>" id="parentDestCheck<%= parentDataIndex %>" class="css-checkbox destCheck" />
+								<label for="parentDestCheck<%= parentDataIndex %>" class="css-label destLable radGroup1"><% if(parentDataObj.SequenceNumber){ %><%= parentDataObj.SequenceNumber %>.<% } %> <%= parentDataObj.Label %></label>
+								<% var dObj = _.findWhere(dataObjects, {"Entity": parentDataObj.Entity});
+									if(dObj){ var dIndex = dObj.Pin_No } %>
+								<i data-markerid="<%= parentDataObj.Id %>" class="desti marker marker-<%= dIndex %>"></i>
+							</h4>
+						</div>
+					</div>
+				</div>
+				<% }); %>
+			</div>
+			<div class="bottom-button-section">
+				<button data-waypts="true" id="addWaypoints" type="button" class="btn active-button">Add</button>
+				<!-- <button type="button" class="btn cancel-button" action="cancel">Cancel</button> -->
+			</div>
+		</div>
+		<div id="get-map-direction"></div>
+		<!--Message::If there is no point selected, it will show this following message-->
+		<span class="note hide">Please select origin and destination points for directions.</span>
+		<!--/Message-->
+		<!--Direction #panel-1::Footer with Print icon-->
+		<div id="print-direction" class="direction-footer">
+			<!--<button type="button" class="btn active-button pull-right" id="print-direction">Print</button>-->
+			<!--<img src="{!JSENCODE(URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/print.png'))}" class="pull-right print-icon"/>-->
+			<button id="printRoute" type="button" class="active-button pull-right export-btn">Export to PDF</button>
+		</div>
+	</div>
+	<!--Tab Panel-3-->
+	<div class="panel-container" id="panel-3" style="display:none;">
+		<div class="panel-collapse collapse in" role="tabpanel">
+			<div id="panel3list" class="panel-body">
+				<!-- #panelDataTemplate will render here -->
+			</div>
+		</div>
+	</div>
+</div>
+<div id="rightSideControl" class="map-selection-tool-panel">
+	<div class="user-selection-distance">
+		<div class="title-distance">Near By Location</div>
+		<div class="openClosePanel" style="display: none;">
+			<input id="nearbyRadius" type="text" placeholder="Radius"/>
+			<select id="nearbyRadiusUnit">
+				<option>km</option>
+				<option>mi</option>
+			</select>
+			<button class="btn active-button nearSubmitbtn" id="findNearbyData">Submit</button>
+		</div>    
+	</div>
+	<div class="draw-tool-panel">                
+		<div id="drawToggle"class="draw-area-button">
+			Draw Area <!--<span></span>-->
+		</div>
+		<div class="inner-tool-bar" style="display:none;">
+			<div class="drawing-tool dragger-active" id="dragger"></div>
+			<div data-tool="circle" id="draw-circle" class="drawing-tool"></div>
+			<div data-tool="square" id="draw-square" class="drawing-tool"></div>
+			<div data-tool="polygon" id="draw-poly" class="drawing-tool"></div>                    
+			<div id="clear-drawing" class="clear-all">Clear All</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,66 @@
+<nav class="bs nav navbar-inverse top-bar left-menu-wrapper hidden-print">
+    <div class="container-fluid no-space">
+        <div class="top-menu left-panel-menu">
+            <ul class="nav nav-pills menu-wrapper">
+                <li class="nav-item menu-active" data-viewname="list">
+                    <a class="nav-link" href="javascript:void(0);"><i class="map-icons-position  mobile-icons map-icons active"></i><span> Locations </span> </a>
+                </li>
+                <li class="nav-item" data-viewname="report">
+                    <a class="nav-link" href="javascript:void(0);"><i class="map-icons-position  mobile-icons plot-reports-icons"></i><span> Filter </span> </a>
+                </li>
+                <li class="nav-item" data-viewname="search">
+                    <a class="nav-link"  href="javascript:void(0);"><i class="map-icons-position  mobile-icons search-icons"></i><span> Search </span></a>
+                </li>
+            </ul>
+			<div class="pull-right text-link">
+				 <p class="wht-color" >
+						<span id= "subscribeSpan"> <span id="review">Write a review about your experience with Map Plotter Premium <a href=" https://appexchange.salesforce.com/listingDetail?listingId=a0N3A00000E1hEiUAJ" onclick = "hideMe();" target="_blank" style="color:white; text-decoration:underline;">here</a>!|</span>Trial ends in <span id="expiryMsg">5</span> days, <a href="http://www.extentia.com/mapplotter" target="_blank" style="color:white; text-decoration:underline;">subscribe</a> now</span>
+				 </p>
+			</div>
+        </div>
+    </div>	
+</nav>
+<div class="data-point-slider-list-wrapper hidden-print container-fluid">
+	<div class="no-gutter row">
+		<div class="datapoints-outer-wrapper">
+			<div id="cObjSlider" class="data-points-wrap custom-listing-pad">
+				<div class="scroller scroller-left"><i class="fa fa-2x fa-angle-left red-arrow"></i></div>
+				<div class="scroller scroller-right"><i class="fa fa-2x fa-angle-right red-arrow"></i></div>
+				<!-- <div class="ul-wrapper"> -->
+					<ul id="dataObjectContainer" class="list-unstyled" id="myTab">
+					<!-- list -->
+						<!-- #dataObjectTemplate loads here -->
+					</ul>                            
+				<!-- </div> -->
+			</div>
+			<div class="addMore-btn text-right" id="addCustomObj">
+				<span class="add-data-point">
+					<i class="fa fa-plus"></i>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row no-gutters map-container">
+	<div id="listViewContainer" class="list-view-Outerwrapper col-12 col-md-4 px-0">
+		<!-- listViewTemplate will render here -->
+		<!-- reportsViewTemplate will render here -->
+	</div>
+	<div id="searchSection" class="list-view-Outerwrapper col-12 col-md-4 px-0 advSearch-Outerwrapper"style="display:none;">
+		<!-- searchTemplate will render here -->
+	</div>
+	<div id="dataPointPanel" class="data-point-panel">
+		<!-- #dataPointTemplate will render here -->
+	</div>
+	<div id="map-plotter-map" class="map-section col px-0">
+		<!--map loads here -->
+	</div>
+</div>
+<div class="toggle-btn hidden-print">
+    <button type="button" class="menu-btn hidden-print" id="open-button">
+    <span class="sr-only">Toggle navigation</span>
+    <i class="fa fa-fw fa-th-large"></i>
+    </button>
+</div>
+
+

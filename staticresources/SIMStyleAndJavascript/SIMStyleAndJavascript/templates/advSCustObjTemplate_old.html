@@ -1,0 +1,9 @@
+<div class="dp-left-col pull-left">
+	<% _.each(data, function(dObj){ %>
+	<p>
+		<input type="checkbox" class="css-checkbox advCustObj" id="cobj<%= dObj.Pin_No %>"/>
+		<label data-val="<%= dObj.Entity %>" class="css-label" for="cobj<%= dObj.Pin_No %>"><%= dObj.Entity %></label>
+		<i class="marker marker-<%= dObj.Pin_No %>"></i>
+	</p>
+	<% }); %>
+</div>

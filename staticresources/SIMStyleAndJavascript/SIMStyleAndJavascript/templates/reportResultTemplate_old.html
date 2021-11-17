@@ -1,0 +1,37 @@
+<% console.log(data); %>
+<div class="map-reports-table-panel" id="">
+	<!--<div class="col-sm-12">
+		
+	</div>-->
+	<div class="col-sm-12 padding-list">
+		<button id="resultPlot" type="button" class="btn active-button pull-right">Plot On the Map</button>
+		<input id="selectAllReportData" class="css-checkbox" type="checkbox">
+		<label for="selectAllReportData" class="css-label">Select All </label>
+		<span id="dataPointResCount" class="results-no pull-right">
+			<span id="outOfReports" data-total="<%= data.length %>">0</span> Results Selected out of <%= data.length %>
+		</span>                
+	</div>
+	<div class="col-sm-12">
+		<div class="table-responsive tblscroll">
+			<table class="table" id="map-plotter-result-list">
+				<tbody>
+					<% _.each(data, function(dataObj){ %>
+					<tr class="odd gradeX">
+						<td>
+							<input id="<%= dataObj.Id %>" class="css-checkbox reportcheck" type="checkbox">
+							<label for="<%= dataObj.Id %>" class="css-label"></label>
+						</td>
+						<td><%= dataObj.Label %></td>
+						<td >
+						<% var dObj = _.findWhere(dataObjects, {"Entity": dataObj.Entity});
+							if(dObj){ var dIndex = dObj.Pin_No } %>
+							<i class="result-marker marker marker-<%= dIndex %>"></i>
+						</td>
+					</tr>
+					<% }); %>
+				</tbody>
+			</table>
+		</div>
+	 </div>
+</div>
+</script>  

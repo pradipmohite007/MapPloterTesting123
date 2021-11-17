@@ -1,0 +1,45 @@
+<li class="row no-gutters">
+	<div class="col-sm-1 text-center">
+		<p class="mb-0 serial-number">1</p>
+	</div>
+	<div class="col-sm-9">
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<div class="form-group">
+					<select class="form-control select-control mdFields">
+						<!-- #metadataFieldOptTemplate will render here -->
+					</select>
+					<span class="error-text-msg" style="display:none">Please Select Field.</span>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-4 ">
+				<div class="form-group">
+					<select class="form-control select-control fieldOps">
+						<!-- #fieldOpeTemplate will render here -->
+						<option value="Select">Select</option>
+					</select>
+					<span class="error-text-msg" style="display:none">Please Select Operator.</span>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-4 ">
+				<div class="form-group">
+					<input id="queryv1" type="text" class="form-control queryVal" placeholder="Query Name"/>
+					<span class="error-text-msg" style="display:none">Please Enter Query Value.</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-2 d-flex justify-content-center">
+		<% if(isColoredFilter){ %>
+			<a id="color1" data-colorval="#000000" class="btn btn-default btn-sm btn-pin colorVal">
+				<i class="fa fa-2x fa-map-marker"></i>
+			</a>
+			<span class="error-text-msg" style="display:none">Please Enter Query Value.</span>
+		<% } %>
+		<div id="pick1" style="display:none;" class="<% if(isColoredFilter){ %>col-sm-3<% } %> picklistSelect">
+			<a href="javascript:void(0)" class="queryLink pull-left">
+				<i class="fa external-icon fa-external-link" aria-hidden="true"></i>
+			</a>
+		</div>
+	</div>
+</li>

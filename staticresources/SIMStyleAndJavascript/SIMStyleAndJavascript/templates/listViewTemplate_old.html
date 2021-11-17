@@ -1,0 +1,32 @@
+<div class="list-viewer">
+	<div class="leftSection">
+		<div class="location-select">
+			<span>Select Locations</span>
+			<button id="clearDB" type="button" class="btn active-button add-button">Clear Data</button>
+		</div>
+		<div class="list-search-container">
+			<i class="fa fa-search icon-search"></i>
+			<input type="text" class="form-control list-search-input" id="country-search" placeholder="Search"/>
+		</div>
+		<div id="listViewAccContainer" class="list-view-accordion-holder">
+			<!-- #listViewAccordTemplate will render here -->
+		</div>
+		<div class="location-select">
+			<span></span>
+			<button id="getListData" type="button" class="btn active-button add-button">Get Data</button>
+		</div>
+
+	</div>
+	<!--Right Section-->
+	<div class="rightSection">               
+		<div id="resultsAccordionContainer">
+			<!-- #dataPointsResultTemplate will render here -->
+		</div>
+		<div class="bottom-strip">
+			<button type="button" class="btn active-button pull-right disabledObj" id="listViewPlot">Plot On the Map</button>
+		</div>
+	</div>
+	<!-- <div class="bottom-strip">
+		  <button type="button" class="btn active-button pull-right" id="listViewPlot">Plot On Map</button>
+	  </div>  -->  
+</div>

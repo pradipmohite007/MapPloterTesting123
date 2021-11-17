@@ -1,0 +1,60 @@
+<div class="panel-group" id="listAccordion" role="tablist" aria-multiselectable="true">
+	<% var countryArr = _.sortBy(Object.keys(data));
+		for(var ci = 0; ci<countryArr.length; ci++){
+	 %>
+	<div class="panel">
+		<div class="panel-heading" role="tab" >
+			<h4 class="panel-title">
+				<input data-index="<%= ci %>" data-statecount="<%= Object.keys(data[countryArr[ci]]).length %>" type="checkbox" id="countryCheck<%= ci %>" class="css-checkbox countryCheck" />
+				<label for="countryCheck<%= ci %>" class="css-label radGroup1"></label>
+				<a data-toggle="collapse" data-parent="#listAccordion" href="#collapse<%= ci %>" aria-expanded="true" aria-controls="collapseOne" class="collapsed">
+					<span class="panel-label"><%= countryArr[ci] %></span>
+					<span class="selected-locations"><span id="locationsSelected<%= ci %>">0</span> locations selected out of <span id="outOfSpan<%= ci %>"></span></span>
+					<i class="fa fa-chevron-down"></i>
+				</a>
+			</h4>
+		</div>
+		<div id="collapse<%= ci %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			<div class="panel-body">
+				<section class="inner-states">
+					<% var stateArr = _.sortBy(Object.keys(data[countryArr[ci]]));
+						for(var si=0; si<stateArr.length; si++){
+					 %>
+						<div class="panel-group" id="listSecondInnerAccordion<%= ci %><%= si %>" role="tablist" aria-multiselectable="true">
+							<div class="panel">
+								<div class="panel-heading inner-accordion" role="tab" >
+									<h4 class="panel-title">
+										<input data-countryindex="<%= ci %>" data-index="<%= si %>" data-citycount="<%= Object.keys(data[countryArr[ci]][stateArr[si]]).length %>" type="checkbox" id="stateCheck<%= ci %><%= si %>" class="css-checkbox stateCheck" />
+										<label for="stateCheck<%= ci %><%= si %>" class="css-label radGroup1"></label>
+										<a data-toggle="collapse" data-parent="#listSecondInnerAccordion<%= ci %><%= si %>" href="#collapseinner2-1<%= ci %><%= si %>" aria-expanded="true" aria-controls="collapseOne" class="collapsed">
+											<span class="panel-label"><%= stateArr[si] %></span>
+											<i class="fa fa-chevron-down"></i>
+										</a>
+									</h4>
+								</div>
+								<div id="collapseinner2-1<%= ci %><%= si %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+									<div class="panel-body">
+										<section>
+											<% var cityArr = _.sortBy(data[countryArr[ci]][stateArr[si]], 'CityName');
+												for(var cti = 0; cti<cityArr.length; cti++){
+											 %>
+											 <div class="city-list">
+												<!-- <input data-countryindex="<%= ci %>" data-stateindex="<%= si %>" type="checkbox" data-index="<%= cti %>" id="cityCheck<%= ci %><%= si %><%= cti %>" class="css-checkbox cityCheck" />
+												<label for="cityCheck<%= ci %><%= si %><%= cti %>" class="css-label radGroup1 panel-label"><%= cityArr[cti] %></label> -->
+												<input data-cid="<%= cityArr[cti].CityKey %>" data-countryindex="<%= ci %>" data-stateindex="<%= si %>" type="checkbox" data-index="<%= cti %>" id="cityCheck<%= ci %>_<%= si %>_<%= cti %>" class="css-checkbox cityCheck" />
+												<label for="cityCheck<%= ci %>_<%= si %>_<%= cti %>" class="css-label radGroup1 panel-label"><%= cityArr[cti].CityName %>
+												</label>
+											</div>
+											<% } %>
+										</section>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% } %>
+				</section>
+			</div>
+		</div>
+	</div>
+	<% } %>
+</div> 
