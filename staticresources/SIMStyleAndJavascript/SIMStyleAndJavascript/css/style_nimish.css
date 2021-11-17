@@ -1,0 +1,770 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800,400italic);
+html,body {
+  background: #fff;
+  font-family: 'Open Sans', sans-serif;
+  color:  #333333;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: left;
+  overflow-x: hidden;
+  height:100%;
+}
+/***************General Css****************/
+.no-space {
+    margin: 0!important;
+    padding: 0!important;
+}
+.no-padding{padding:0;}
+.padd-8{padding-left:8px;padding-right:8px;}
+.padd-20{padding:20px;}
+.no-margin {
+  margin: 0px !important;
+}
+
+.no-bottom-space {
+  padding-bottom:0px !important;
+  margin-bottom: 0px !important;
+}
+
+.no-top-space {
+  padding-top:0px !important;
+  margin-top: 0px !important;
+}
+
+.space5 {
+  display: block;
+  height: 5px !important;
+  clear: both;
+}
+
+.space7 {
+  height: 7px !important;
+  clear: both;
+}
+
+.space10 {
+  height: 10px !important;
+  clear: both;
+}
+
+.space12 {
+  height: 12px !important;
+  clear: both;
+}
+
+.space15 {
+  height: 15px !important;
+  clear: both;
+}
+
+.space20 {
+  height: 20px !important;
+  clear: both;
+}
+
+.white {
+    color:#fff;
+}
+a:focus,
+a:hover{
+	outline:none;
+	text-decoration:none;
+}
+img{max-width:100%;}
+
+#open-button:active{
+outline: none;
+border: none;
+}
+.fa-th-icon{font-size:1em;}
+
+.btn-mapplotterbutton{
+    min-width:130px;
+    background-color:  #cf3736;
+    color:#fff;
+    border-radius: 2px;
+    border-color: #cf3736;
+}
+
+.btn-mapplotterbutton:hover,.btn-mapplotterbutton:focus{
+    border-radius: 2px;
+    background-color:  #cf3736;
+    color:#fff;
+    outline:none;
+}
+
+select.form-control{
+    border-radius:0px;
+}
+
+.error-text-msg {
+    /* width: 80%;
+    margin-left: 6%; */
+    color: #ff0000;
+}
+
+.table > thead:first-child > tr:first-child > th{vertical-align:middle;}
+
+@-ms-viewport{ 
+  width: auto !important; 
+}
+
+
+
+/*******************************Data-Table Changes ***********************/
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 10px;
+    border-bottom: 1px solid #111;
+}
+table.table thead th.sorting::after, table.table thead th.sorting_asc::after, table.table thead th.sorting_desc::after {
+    top: 12px;
+}
+table.table thead th{border:1px solid rgba(255, 255, 255, 0.3);}
+.maptable-header{
+    background: rgba(49, 53, 61, 0.8) none repeat scroll 0% 0%;
+    color: rgb(255, 255, 255);
+    border:1px solid rgba(49, 53, 61, 0.8);
+}
+
+
+
+/***Navigation Css Starts
+***********************/
+
+/******************Mapplotter-page Menu Css Starts***************************/
+.bs .menu-wrapper{width:100%;}
+.bs .menu-wrapper li{height:40px; border-right:1px solid rgba(255, 255, 255, 0.2);}
+.bs .menu-wrapper li:last-child{float:right; border-right:none; border-left:1px solid rgba(255, 255, 255, 0.2);}
+.bs .menu-wrapper li a{color:#fff!important;padding:10px 15px;}
+.bs .menu-wrapper li a span{vertical-align:top;}
+.bs .map-icons-position{
+    background-repeat: no-repeat;
+    background-position: 0 0; 
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    padding: 0;
+}
+.bs .map-icons{background-image: url(../images/listview-icon.png);}
+.bs .report-icons {background-image: url(../images/listview-icon.png);}
+/*******************Mapplotter-page Menu Css Ends****************************/
+
+.data-point-slider-list-wrapper{
+    background-color: #ededed;
+    width: 100%;
+    position: relative;
+	height:38px;
+    /*overflow:auto;*/
+}
+.data-point-slider-list-wrapper li{position:relative;min-width:140px;padding:6px;}
+.data-point-slider-list-wrapper .datapoints-outer-wrapper{height:38px;}
+.data-point-slider-list-wrapper .points-list-wrapper{max-width:96%; display:inline-block;}
+.marker {
+    background: url(../images/markers/marker-sprite.png) no-repeat;
+    width: 18px;
+    height: 21px;
+    display: inline-block;
+    float: left;
+}
+.marker-0{
+   background-position: 0 0; 
+}
+.marker-1{
+   background-position: 0 -25px; 
+}
+.marker-2{
+   background-position: 0 -50px; 
+}
+.marker-3{
+   background-position: 0 -75px; 
+}
+.marker-4{
+   background-position: 0 -100px; 
+}
+.marker-5{
+   background-position: 0 -126px; 
+}
+.marker-6{
+   background-position: 0 -151px; 
+}
+.marker-7{
+   background-position: 0 -176px; 
+}
+.marker-8{
+   background-position: 0 -201px; 
+}
+.marker-9{
+   background-position: 0 -227px; 
+}
+
+.data-point-listobject{
+	margin: 0px;
+	padding: 0px;
+	/*display: inline-block;
+	width: auto;
+	max-width: 97%;
+	white-space: nowrap;*/
+	/*overflow-x: auto;*/
+}
+.mCSB_horizontal.mCSB_inside > .mCSB_container {
+    margin-bottom: 10px !important;
+    margin-right: 0;
+}
+.data-point-name{
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+    float: left;
+    margin: 3px 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100px;
+}
+.data-point-cross {
+    position: absolute;
+    padding: 0px 0px 0px 8px;
+    color: grey;
+    font-size: 18px;
+    cursor: pointer;
+    right: 5px;
+}
+.add-data-point{
+    display: inline-block;
+	position: absolute;
+	box-sizing: border-box;
+	width: 40px;
+	height: 38px;
+	color: #cc3300;
+	background-color: rgba(17,17,17,0.2);
+	border-right: 0px;
+	text-align: center;
+	padding: 9px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.map-section{
+height:550px;
+background:#0094ff;
+}
+
+/*********************************Tab Section Design Starts*************************************/
+.get-direction-tab{width:325px;position: absolute;left: 15px;top: 60px;z-index: 999;}
+.get-direction-tab .panel-wrap{border:none;}
+.panel-default>.new-panel {
+    color: #333;
+    background-color: #31353d;
+    border-color: #31353d;
+    padding: 0px 0px 0px 0px;
+    border:none;
+}
+.panel-default> .new-panel li{
+    min-width:65px;
+    height:37px;
+    padding:0;
+}
+.panel-default > .new-panel .tab-style li a{
+    padding:7px;
+}
+.panel-default > .new-panel .tab-style li a img{
+    display:block;
+    margin:0 auto;
+    vertical-align:middle;
+}
+.tab-style > li > a:focus, .tab-style> li > a:hover {
+    text-decoration: none;
+    background-color: transparent;
+    border:none;
+}
+.tab-style > li.active > a, .tab-style > li.active > a:focus, .tab-style > li.active > a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #cf3736;
+    /*border: 1px solid #ddd;
+    border-bottom-color: transparent;*/
+    border: none;
+    padding: 7px;
+}
+.custom-panel-body{padding:0px;}
+.list-viewer .list-search-container {
+    position: relative;
+    padding: 6px 12px;
+}
+.list-viewer .icon-search {
+    right: 20px;
+    position: absolute;
+    padding: 7px;
+    color: #cf3736;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+.list-viewer input[type=text].list-search-input {
+    padding-right: 30px;
+    border-radius: 18px;
+    font-weight: 400;
+    height:30px;
+}
+.list-viewer .selectall-wrapper{
+    position: relative;
+    padding: 6px 12px;
+    border-top:1px solid rgba(0, 0, 0, 0.26);
+}
+.list-viewer .selectall-wrapper p{display:inline-block;margin-bottom:0;}
+.tab-panel-footer{
+    position:relative;
+    float:left;
+    width:100%;
+    height:50px;
+    padding:10px 15px;
+    background:#fff;
+    border-top:1px solid #ccc;
+}
+#loaction-list .content-1{
+
+}
+
+#getdata-list .content-2{
+
+}
+
+/*******************************Plot Report Css*****************************/
+/*.plot-rpt-table tr td:first-child{
+    width:80%;
+}
+.plot-rpt-table tr td:last-child{
+    width:20%;
+}*/
+.plot-rpt-table tbody tr td label{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 500px;
+}
+.mapplotrpt{
+     background:#fff;
+    -webkit-box-shadow: 0px 0 15px 0 #999999;
+     box-shadow: 0px 0 15px 0 #999999;
+     position: absolute;left:0px;top: 100%;z-index: 9999;
+     padding:15px;
+}
+p.sub-title{
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+}
+.mapplotrpt .form-group{margin-bottom:8px;}
+.mapplotrpt label.rptlabel{width:60px;}
+.mapplotrpt .select-control{width: 200px;margin-bottom:5px; border-radius:0px;}
+.custom-map-btn{position:absolute; bottom:5px;right:0;}
+/*****************************Mapplotter page css Ends**********************************************************/
+
+/***************************************************Setting-page Css Starts*************************************/
+
+.setting-page-wrapper {
+    padding:0 !important;
+}
+
+/*********************************Setting-page Menu Css Starts***************************************************/
+.left-sidebar-menu{
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 14px;
+    width:20%;
+    height: 100%;
+    background-color: #31353d;
+    padding-left: 0px;
+    padding-right: 0px;
+    float:left;
+}
+.left-menu-wrapper {
+    font-size:1em;
+}
+.left-sidebar-menu .menu ul{margin:0; padding:0;list-style:none;}
+.left-sidebar-menu .menu ul li{
+    height: 41px;
+    display: block;
+    float:left;
+    width: 100%;
+    border-bottom: 1px solid #555;
+}
+.left-sidebar-menu .menu ul li a{
+    display: block;
+    text-align:left;
+    text-transform:capitalize;
+    text-decoration:none;
+    color:#f1f1f1;
+    font-weight:600;
+    padding-left:15px;
+}
+.left-sidebar-menu .menu ul li a span{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 7px;
+}
+.left-sidebar-menu .menu ul li a span img{
+    height:30px;
+    width:30px;
+}
+.menu-active {
+    background-color: #cf3736;
+    transition: background-color 0.6s ease;
+}
+/*********************************Setting-page Menu Css Ends***************************************************/
+
+.right-content-area{
+    margin-left: 20%;
+    width: 80%;
+    height: 100%;
+    padding: 0;
+    float:left;
+    min-height:760px;
+}
+.right-content-area .well{
+    padding:10px 4px;
+    border-radius:0px;
+    -moz-border-radius:0px;
+	-webkit-border-radius:0px;
+}
+.right-content-area .well img{
+    vertical-align: middle;
+    display: inline-block;
+    width: 40px;
+    margin-left: 13px;
+}
+.right-content-area span.title{
+    display: inline-block;
+    vertical-align: middle;
+    color: #cf3736;
+    font-size: 26px;
+    line-height: 40px;
+}
+
+/**************************Setting Page Right-Section tabs Css Starts*********************************************/
+.lblname{margin-top: 6px;}
+.introduction, .geocding-section,.custom-mapping-section,.object-mapping{
+   padding: 0px 15px;
+}
+.introduction p{text-align:justify;}
+.introduction ul li{color:#cf3736;}
+.introduction ul li span{color:#333333;}
+
+.geocding-section .nav-tabs {
+    float: left;
+    width: 100%;
+    background-color: #ededed;
+    border-bottom: 1px solid #ededed;
+    margin: 15px 0px;
+    color: #111111;
+}
+.geocding-section .nav-tabs li > a {
+    border-right: 1px solid rgba(49, 53, 61, 0.2);
+}
+.geocding-section .nav-tabs li.active > a, .geocding-section .nav-tabs li.active > a:hover, .geocding-section .nav-tabs li.active > a:focus {
+    color: #111111;
+    border-radius: 0px;
+    background-color: #ededed;
+    border: none;
+    border-bottom: 2px solid #cf3736;
+    outline: 0 none;
+    border-right: 1px solid rgba(49, 53, 61, 0.2);
+}
+.geocding-section .tab-content ul li {
+    color: #333333;
+    padding: 0 0 10px 0;
+}
+.custom-mapping-section .well{padding:0 15px;}
+
+.object-mapping .object-selection-box,.setting-report .object-selection-box{
+    background-color:  rgba(34, 34, 34, 0.03);
+    height: 60px;
+    min-height:20px;
+    padding:15px;
+}
+.object-mapping .well{padding:20px;}
+.object-mapping .form-group{margin-bottom: 0px;}
+.object-mapping .form-control,.setting-report .form-control{margin-bottom: 10px;}
+.object-form-wrapper{padding:20px;}
+
+.hr-line {
+    background-color: rgba(49, 53, 61, 0.2);
+    width: 100%;
+    height: 1px;
+    display: inline-block;
+}
+.action-btn{
+    border: 0 none;
+    border-radius: 2px;
+    color: #fff;
+    padding: 6px;
+    text-align: center;
+    min-width: 65px;
+    margin:5px;
+}
+.redbtn,.redbtn:hover{
+    background: #cf3736 none repeat scroll 0 0; 
+}
+.blackbtn,.blackbtn:hover {
+    background-color: #31353d;
+}
+
+.td-center {
+    text-align:center
+}
+
+/*********Status Reports CSS**************/
+ul.report-status{list-style: none;padding: 0 0 0 0;margin: 0;}
+ul.report-status li{
+    float: left;
+    width: 22%;
+    margin: 0;
+    border: 1px solid #e9e9e9;
+    padding: 15px;
+	color: #222222;
+    font-size: 16px;
+    font-weight: 400;
+	line-height:34px;
+    text-align: center;
+	}
+	ul.report-status li:last-child{
+    font-size: 16px;
+    font-weight: 600;
+	}
+  ul.report-status li span{display:block;
+    font-size: 36px;
+    font-weight: 400;
+	line-height:34px;
+    text-align: center;
+}
+.green{color:#75a906;}
+.red{color:#d5100f;}
+.yellow{color:#d0a203;}
+.black{color:#222222;}
+
+
+/*****************Footer section Css Starts*********************************/
+footer{
+   color: #fff;
+	font-size: 13px;
+	font-weight: 600;
+	padding: 15px;
+	text-align: right;
+	width: 100%;
+}
+/***************************************Media Queries Starts**********************************************************/
+
+@media screen and (max-width: 1024px) {
+    /****************Plot Report Css Starts*/
+.plot-rpt-table tbody tr td label{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 300px;
+}
+.mapplotrpt .select-control {
+    width: 145px;
+    margin-bottom: 5px;
+    border-radius: 0px;
+}
+.btn-mapplotterbutton{min-width:100px;}
+}
+@media screen and (max-width: 991px) {
+.menu-btn{
+        position: fixed;
+        bottom: 0px;
+        z-index: 10000;
+        padding: 0px;
+        width: 2.5em;
+        border: medium none;
+        background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+        height: 2.5em;
+        font-size: 1.1em;
+        left: 15px;
+        border-radius: 100%;
+        margin: 0.5em;
+        color: #cf3736;
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+/*.left-sidebar-menu{ position:fixed; left:0; width:100%; bottom:0; height:350px; top:auto;}*/
+.left-menu-wrapper{
+    padding-top:70px;
+    position: fixed;
+    z-index: 9999;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+23&0+0,0.65+23 */
+background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 23%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 23%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 23%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+    -webkit-transition: width 0.3s, height 0.3s;
+    transition: width 0.3s, height 0.3s;
+    width:100%;
+    height:auto;
+    min-height:300px;
+    font-size: 1em;
+    bottom: 0;
+    left: 0;
+    top:auto;
+    border-radius: 0px;
+  transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+  transition: 400ms ease-in-out 0s;
+  visibility: hidden;
+  opacity:0;
+  padding-bottom:30px;
+}
+.show-menu .left-menu-wrapper{
+    width:100%;
+  visibility: visible;
+  opacity:1;
+ transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -webkit-transform: translateY(0%);
+  z-index:9999;
+ }
+
+    .right-content-area {
+        margin-left: 0;
+        width: 100%;
+    }
+
+     /****************Plot Report Css Starts*/
+.plot-rpt-table tbody tr td label{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 300px;
+}
+.mapplotrpt .select-control {
+    width: 215px;
+    margin-bottom: 5px;
+    border-radius: 0px;
+}
+.btn-mapplotterbutton{min-width:130px;}
+
+}
+
+@media screen and (max-width: 767px) {
+/*.toogle-btn{position:relative;display:block;}*/
+.menu-btn{
+        position: fixed;
+        bottom: 0px;
+        z-index: 10000;
+        padding: 0px;
+        width: 2.5em;
+        border: medium none;
+        background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+        height: 2.5em;
+        font-size: 1.1em;
+        left: 15px;
+        border-radius: 100%;
+        margin: 0.5em;
+        color: #cf3736;
+        -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+-moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+/*.left-sidebar-menu{ position:fixed; left:0; width:100%; bottom:0; height:350px; top:auto;}*/
+.left-menu-wrapper{
+    padding-top:70px;
+    position: fixed;
+    z-index: 9999;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+23&0+0,0.65+23 */
+background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 23%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 23%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 23%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+    -webkit-transition: width 0.3s, height 0.3s;
+    transition: width 0.3s, height 0.3s;
+    width:100%;
+    height:auto;
+    min-height:300px;
+    font-size: 1em;
+    bottom: 0;
+    left: 0;
+    top:auto;
+    border-radius: 0px;
+  transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  -moz-transform: translateY(100%);
+  -webkit-transform: translateY(100%);
+  transition: 400ms ease-in-out 0s;
+  visibility: hidden;
+  opacity:0;
+  padding-bottom:30px;
+}
+.show-menu .left-menu-wrapper{
+    width:100%;
+  visibility: visible;
+  opacity:1;
+ transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -webkit-transform: translateY(0%);
+  z-index:9999;
+ }
+ 
+ /*************Mapplotter Menu Css*****************************/
+.menu-wrapper{margin:0;}
+.menu-wrapper li {
+    border: none;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.menu-wrapper li a {
+    padding: 2px 15px;
+}
+.menu-wrapper li a span {
+    vertical-align: middle;
+}
+.menu-wrapper li:last-child{float:none; border:none;}
+.mobile-icons{border-radius: 100%;background-color: rgb(255, 255, 255);margin-right: 15px;}
+.map-icons-position {background-position: -2px -2px;}
+.menu-active {
+    background:none;
+    transition: background-color 0.6s ease;
+}
+.mobile-icons-active{background-color: #cf3736;}
+.map-icons{background-image: url(../images/info_icon-selected.png);}
+.report-icons{background-image: url(../images/info_icon-selected.png);}
+
+.data-point-listobject{max-width:90%;}
+
+ /****************Plot Report Css Starts*/
+.plot-rpt-table tbody tr td label{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 300px;
+}
+.btn-mapplotterbutton{min-width:100px;}
+#plotreporttable.dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate {
+    float: none;
+    text-align: left;
+}
+
+.object-mapping .object-selection-box,.setting-report .object-selection-box{height:140px;}
+ ul.report-status li { width: 100%;padding: 20px;}
+}
+
+@media screen and (max-width: 480px) {
+.data-point-slider-list-wrapper .points-list-wrapper {
+    max-width: 88%;
+    display: inline-block;
+}
+.data-point-listobject {
+    max-width: 100%;
+}
+}
+
+
+@media screen and (max-width: 320px) {
+
+}

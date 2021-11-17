@@ -1,0 +1,327 @@
+/*********************************************/
+/**MAP PLOTTER **/
+/**********RESPONSSIVE :: MEDIA QUERIES*******/
+/*********************************************/
+@media(max-width: 1366px) {
+#panel-1 .data-search-list h4 label{
+     width:225px;
+	 text-overflow: ellipsis;
+     white-space: nowrap;
+     overflow: hidden;
+}
+/* .dataTables_wrapper .dataTables_scroll div.dataTables_scrollBody{height:55vh !important}; */
+}
+@media(max-width: 1024px){
+.geo-records-reports select {margin-right: 0px;height: 30px;width: 175px;margin-left: 10px;}
+}
+@media(max-width: 991px){
+  .list-viewer .list-search-container{width:90%; margin:0 auto;}
+      .list-viewer .leftSection{
+        min-width: 100%!important;
+        width: auto;
+        min-height: auto;
+     }
+.table-responsive .table {max-width: none;}
+.list-viewer .rightSection {
+    width: 60%;
+    float: left;
+	height:100%;
+}
+.list-viewer .leftSection {min-width:10%!important; width: 40%; min-height: auto;}
+.list-viewer .rightSection .results-accordion-holder {float: left;}
+ i.result-marker {margin-right:0px !important;}
+}
+@media(max-width: 767px){
+  .wrapper{padding:-10px 0px 0 0px; margin:-15px 0 0;}
+  .top-bar{width: 100%;}
+  .top-bar .button-container{
+        margin-left: auto;
+        margin-right: auto;
+        width: 100% !important;
+		margin: 15px auto 0px auto;
+    }
+    .top-bar .button-container .map-icon-wrapper .app-button:last-child{border-right:none;}
+    .top-bar .button-container .map-icon-wrapper .app-button{
+       width: 33%;
+	   float:left;
+    }
+	
+	.top-bar .button-container .app-button.advsrch{
+       width:15%;
+       text-align: -webkit-center;
+	   float:left;
+    }
+	.map-icon-wrapper{
+		width: 85%;
+		float: left;
+		height: 44px;
+	}
+	.top-bar .button-container .app-button span.button-tag{   
+    font-size: 12px;
+}
+     .top-bar .search-container{
+        display: none!important;
+     }
+     .top-bar .add-locations-button{
+        display: none!important;
+     }
+     /*DATA POINT SCROLLER LIST*/
+    .data-point-slider-list {
+        height: 44px;
+        background-color: #ededed;
+        width: 100%;
+    }
+     /*MAIN CONTAINERS::MAP VIEWER + LIST VIEWER*/
+     .map-viewer,.list-viewer{
+        width: 100%;
+       
+     }
+	 .list-viewer .list-search-container{width:90%; margin:0 auto;}
+      .list-viewer .leftSection{
+        min-width: 100%!important;
+        width: auto;
+        min-height: auto;
+     }
+     .list-viewer .location-select span{
+       text-align: left;
+       text-align: -webkit-left;
+     }
+    .list-viewer .add-button{
+        position: absolute;
+        bottom: 0px!important;
+        z-index: 999;
+        width: 25%!important;
+        left: 0;
+        margin-bottom: 11px!important;
+     }
+    .list-viewer .bottom-strip{
+        background-color: #fff;
+        box-shadow: 0px -5px 15px #c6c6c6;
+        padding: 10px;
+     }
+    #list-viewer-plot-button{
+        width: 45%;
+     }
+    .rightSection{
+        /*display: none;*/
+     }
+     /*DIRECTION PANEL*/
+     .direction-panel-wrapper{
+        top: 40px;
+        left: 0px;
+        /* right: 0; */
+        width: 100%;
+        /* height: 100%; */
+        /* bottom: 0!important; */
+        min-height: auto;
+        height: 80%;
+     }
+     .direction-panel{
+        position: absolute;
+        top: 15px !important;
+        left: 0;
+        width: 100%;
+        border-radius: 0px!important;
+     }
+     .direction-panel .panel-menu-bar{
+        border-radius: 0px!important;
+     }
+     .direction-panel .panel-menu-bar .minimizer{
+        display: none;
+     }
+     .panel-container{
+        min-height: 100%!important;
+    height: auto;
+    width: 100%;
+     }
+     #panel-1 .bottom-button-section{
+        position: absolute;
+        bottom: 0;
+        /* background-color: #333; */
+        width: 100%;
+        padding: 10px;
+        z-index: 999;
+     }
+     .modal-dialog{
+        margin: 0px!important;
+     }
+     .modal-content{
+        width: 100%;
+        padding: 0;
+        /* margin: 0px 0px; */
+        top: 0px;
+        border-radius: 0px;
+     }
+     #mapModal{
+         top:0!important;
+         padding: 0px!important;
+     }
+     .icon-search{
+        padding:8px!important;
+     }
+     .modal-header .close{
+        font-size: 2em;
+        margin-top: -5px;
+     }
+    .modal-footer {
+        text-align: center!important;
+    }
+    .modal-footer button.btn.active-button, .modal-footer button.btn.cancel-button {
+        width: 47%;
+        display: inline-block;
+        float: none!important;
+    }
+    .modal-footer .btn+.btn{
+        margin-bottom: 1px;
+    }
+    .desktop-button{
+        display: none!important;
+    }
+    .add-location-circular-button{
+        display: block;
+        position: absolute;
+        border-radius: 50%;
+        height: 7vh;
+        width: 7vh;
+        top: 70%;
+        right: 5%;
+        background: #cc3300;
+        color: #fff;
+        border: 0px;
+    }
+    /**Map Drawing tool Panel**/
+    .draw-area-button{
+        display: none;
+    }
+  .top-bar .advance-search{top:88px; padding:3px 10px;} 
+  .advance-search-button span{padding-top:5px;}
+  .advance-search-panel{top:44px;} 
+  .list-viewer .bottom-strip, #getListData{position:fixed; bottom:0;}
+  .list-viewer .rightSection{width:100%;}
+  /*.top-bar{position:fixed; top:44px;}*/
+  
+  /*****************************************************MapPlotter Left panel Css Starts*****************************************************/
+ .bs .panel-heading {padding: 12px 25px;}
+ .panel i {right: 25px;}
+ .list-viewer .rightSection .results-accordion-holder{width:100%;padding-left:0;padding-right:0;}
+ .rightSection >.bs .panel-heading {padding: 12px 25px;}
+ i.result-marker {margin-right: 0px !important;}
+  
+ #resultsAccordionContainer .select-all-container .searchfield{width:55%;}
+ #resultsAccordionContainer .select-all-container input[type=text].round{width:100%;}
+ .list-viewer .rightSection .select-all-container .results-no{margin-top:35px;}
+ .addBtn{
+                background: url(../images/addlocations-icon.png); 
+				background-repeat: no-repeat; 
+                top: 70%;
+                left: 75%;
+                position: absolute;
+                width: 100px;
+                height:100px;
+                border-radius: 3px;
+                z-index: 9999;
+	    }
+ .loader{                
+                margin:0 auto;
+                top: 50%;
+                left: 30%;
+				width:175px;
+				height:75px;
+        }	
+
+.drop-label {
+    padding-top: 10px;
+    padding-left: 15px;
+}			
+.geo-records-reports select {
+    height: 30px;
+    margin: 10px 0;
+}		
+.settings-object-reports { margin: 0 auto;}	
+table tbody tr td{white-space: normal;}
+.direction-panel .panel-menu-bar .tab {width: 33.333%;}
+.list-viewer .rightSection .dataTables_wrapper .dataTables_filter .icon-search {right: 60px;}
+.list-viewer .rightSection .dataTables_wrapper .dataTables_filter input[type=text].list-search-input{width:300px;}
+
+/****************************** Near By Area Design Starts**************************************************/
+/*.sprite {background-image: url(spritesheet.png); background-repeat: no-repeat;display: block;}
+.sprite-draw_icon {width: 40px;height: 40px;background-position: -5px -5px;}
+.sprite-draw_icon_selected {width: 40px;height: 40px;background-position: -55px -5px;}
+.sprite-near_by_icon {width: 40px;height: 40px;background-position: -105px -5px;}
+.sprite-near_by_icon_selected {width: 40px;height: 40px;background-position: -155px -5px;}*/
+.hide-tools{display:none;}
+.show-tools{display:block;}
+.draw-tool-panel {
+    right: 245px;
+    width: 35px;
+    top: 100%;
+    left: 20%;
+    height: 200px;
+}
+.draw-area-button {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    border-radius: 3px;
+    background: #ffffff url(../images/draw-spritesheet.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 1px 0px;
+    cursor: pointer;
+    display: block;
+    float: left;
+    box-shadow: 5px 0px 8px #c2c2c2;
+    z-index: 999;
+}
+.draw-area-button.active{background-position: -35px 0px;}
+.draw-area-button span{display:none;}
+.inner-tool-bar {
+    float: left;
+    width: 35px;
+    height: 130px;
+    position: relative;
+    border-radius: 3px;
+    background-color: #ffffff;
+    /* cursor: pointer; */
+    /* display: block; */
+    /* float: left; */
+    box-sizing: border-box;
+    padding: 7px;
+    /* margin-left: -5px; */
+}
+#dragger {background-position: -2px -172px;width: 30px;height: 30px;}
+#draw-circle {background-position: -2px -60px;width: 30px;height: 30px;}
+#draw-poly {background-position: -2px -5px;width: 30px;height: 30px;}
+#draw-square {background-position: -2px -117px;width: 30px;height: 25px;}
+.dragger-active {background-position: -4px -200px!important;}
+.clear-all {
+    display: inline-block;
+    position: absolute;
+    background-color: #31353d;
+    color: #fff;
+    padding: 2px;
+    top: 100%;
+    left: 0%;
+    font-size: 11px;
+    border-radius: 0px;
+    cursor: pointer;
+    text-align: center;
+    /* margin-top: 10px; */
+}
+/****************************** Near By Area Design Ends**************************************************/
+}
+@media(max-width: 480px){
+.drop-label {
+    padding-top: 10px;
+    padding-left: 15px;
+}
+  .geo-records-reports select {
+    height: 30px;
+    margin: 10px 0;
+}
+
+}
+@media(max-width: 320px){
+
+}   
+

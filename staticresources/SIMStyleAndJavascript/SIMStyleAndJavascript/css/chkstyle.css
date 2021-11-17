@@ -1,0 +1,79 @@
+input[type=checkbox].css-checkbox {
+	position: absolute;
+	z-index: -1000;
+	left: -1000px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-checkbox + label.css-label.clr {
+	padding-left: 22px;
+	height: 17px;
+	display: inline-block;
+	font-weight:400;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 17px;
+	background-repeat: no-repeat;
+	/* background-position: 0 0; */
+	background-position: 0px -17px;
+	font-size: 13px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+input[type=checkbox].css-checkbox:checked + label.css-label, input[type=checkbox].css-checkbox + label.css-label.chk {
+	background-position: 0px -34px;
+}
+input.css-checkbox[type="checkbox"]:indeterminate + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.chk {
+	background-position: 0px 0px;
+}
+label.css-label {
+	background-image: url("../images/controls/checkbox_sprite2.png");
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	font-weight: 400;
+}
+.data-point-holder .inner-list input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-checkbox + label.css-label.clr,.advance-search-panel .dp-left-col input.css-checkbox[type="checkbox"] + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.clr {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 175px;
+}
+.data-point-holder .inner-list  input.css-checkbox[type="checkbox"]:checked + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.chk,.advance-search-panel .dp-left-col input.css-checkbox[type="checkbox"]:checked + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.chk {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 175px;
+}
+.add-makerlist input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-checkbox + label.css-label.clr,.advance-search-panel .dp-left-col input.css-checkbox[type="checkbox"] + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.clr {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 175px;
+}
+.add-makerlist input.css-checkbox[type="checkbox"]:checked + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.chk,.advance-search-panel .dp-left-col input.css-checkbox[type="checkbox"]:checked + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.chk {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 175px;
+}
+
+.marker-list input[type=checkbox].css-checkbox + label.css-label, input[type=checkbox].css-checkbox + label.css-label.clr{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 200px;
+}
+.marker-list input.css-checkbox[type="checkbox"]:checked + label.css-label, input.css-checkbox[type="checkbox"] + label.css-label.chk{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 200px;
+}

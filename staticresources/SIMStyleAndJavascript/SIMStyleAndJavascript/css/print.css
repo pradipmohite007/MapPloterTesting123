@@ -1,0 +1,23 @@
+.bPageFooter, 
+.bPageHeader,.exportPdf-wrapper, 
+.add-destination-wrapper,.widget-swap-direction,
+.map-heading,#drawAreaControl{
+  display: none !important;
+ }
+body.sfdcBody
+{
+   background: none !important;
+}
+.getdir-wrapper
+{
+    width: 100%;
+    overflow-y: auto!important;
+    height: auto !important;
+    display: block!important;
+}
+.map-section {display: block;}
+.bs td, .bs th 
+{
+  padding: 10px !important;
+}
+* {-webkit-print-color-adjust:exact;}
