@@ -1,0 +1,65 @@
+<apex:page showHeader="false" controller="Ctrl_MapPlotter" sidebar="false" standardStylesheets="false">
+    <apex:define name="head">
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/style.css')}"/>
+    </apex:define>
+    <!-- Begin Default Content REMOVE THIS -->
+    <apex:define name="body">
+        <title>Map Plotter- Directions</title>
+        
+        <div class="print-container">
+            <h1 class="mapHeading">Map Plotter Directions</h1>
+            <!-- End Default Content REMOVE THIS -->
+            <input type="button" value="Print"  class="btn-printmap" onclick="window.print()" />
+            <h4 id="origin" class="o-point"></h4>
+            <span> To </span>
+            <h4 id="destination" class="des-point"></h4>
+            <div id="map-canvas" class="direc-map"></div>
+            <div id="directions" class="dir-list"></div>
+        </div>
+        
+        <script>
+        
+        //False Positive: Loaded Google map api library dynamically which is used to display map on webpage.
+        var jsElm = document.createElement("script");        
+        jsElm.type = "application/javascript";        
+        jsElm.src = 'https://maps.googleapis.com/maps/api/js?key={!JSENCODE(googleAPIkey)}&v=3.31&libraries=places,drawing,visualization&callback=initialize';
+        document.body.appendChild(jsElm); 
+        
+        function initialize(){
+            
+            var display = new google.maps.DirectionsRenderer({
+                draggable: true
+            });
+            var dirService = new google.maps.DirectionsService();
+            display.setPanel(document.getElementById('directions'));
+            function initialize() {
+                var exCentre = new google.maps.LatLng(38, 71);
+                var mapOptions = {
+                    zoom: 10,
+                    center: exCentre
+                };
+                var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+                display.setMap(map);
+                var requestString = '{!JSENCODE($CurrentPage.parameters.req)}';
+                var reqStr = decodeURI(requestString);
+                if(reqStr){
+                    var reqObj = JSON.parse(reqStr);
+                    document.getElementById('origin').innerText = reqObj.origin.query;
+                    document.getElementById('destination').innerText = reqObj.destination.query;
+                    if(reqObj.drivingOptions){
+                        reqObj.drivingOptions.departureTime = new Date(reqObj.drivingOptions.departureTime);
+                    }
+                    dirService.route(reqObj, function(response, status) {
+                        if (status === google.maps.DirectionsStatus.OK) {
+                            display.setDirections(response);
+                        }
+                    });
+                }
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+            
+        }
+        
+        </script>
+    </apex:define>
+</apex:page>

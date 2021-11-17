@@ -1,0 +1,673 @@
+<apex:page controller="Ctrl_MapPlotter" tabStyle="Map_Plotter_Settings__tab" sidebar="false" standardStylesheets="false">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+<!-- To change this license header, choose License Headers in Project Properties. To change this template file, choose Tools | Templates and open the template in the editor. -->
+    <c:remotesitehelper rssName="MapPlotter_RemoteSite"
+                        rssDescription="This helps to save the dynamic trigger."
+                        pageSectionTitle="My Awesome Package Welcome Page"
+                        pageSectionSubTitle="Welcome"
+                        />
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/bootstrap/bootstrap.min.css?d=')+randomNumber}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/jquery.dataTables.min.css?d=')+randomNumber}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/scroller.dataTables.min.css?d=')+randomNumber}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/chkstyle.css?d=')+randomNumber}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/font-awesome.min.css?d=')+randomNumber}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/dataTables.fontAwesome.css?d=')+randomNumber}"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/buttons.dataTables.min.css?d=')+randomNumber}"/>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/style.css?d=')+randomNumber}"/>
+    
+    
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jquery-3.3.1.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/popper.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/bootstrap/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jquery.dataTables.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/dataTables.bootstrap4.min.js')}"/>
+    
+    
+    
+    
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/dataTables.scroller.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/dataTables.buttons.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jszip.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/pdfmake.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/vfs_fonts.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/buttons.html5.min.js')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/underscore-min.js')}"/> 
+    
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/FileSaver.js')}"/> 
+    
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/TableExport.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/radialIndicator.js')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.settingScript)}"/>
+    
+    
+    <apex:define name="body">
+        <div id="loader-overlay" class="overlay">
+            <div class="loader">&nbsp;</div>
+        </div>
+        
+        
+        <!-- Progress circle loader starts -->
+        <div id="progress-loader-cont" class="progress-loader-overlay">
+            <div id="progress-circle-loader" class="progress-circle-loader"></div>
+        </div>
+        <!-- Progress circle loader ends -->
+        <!--full-ht-->
+        <div id="mainContainer" class="bs wrapper container-fluid no-space ">
+            <div class="overlayContent"></div>
+            <div class="row no-gutters setting-page-wrapper">
+                <div class="col left-sidebar-menu left-menu-wrapper">
+                    <div class="menu left-panel-menu">
+                        <ul class="list-unstyled">
+                            <li class="menu-item menu-active" data-section="section-2">
+                                <a href="javascript:void(0)">
+                                    <i class="settings-icons-position geocoding-icons active mobile-icons"></i><span>Set Up Google APIs</span> 
+                                </a>
+                            </li>
+                            <li class="menu-item" data-section="section-3">
+                                <a href="javascript:void(0)"><i class="settings-icons-position custom-icons mobile-icons"></i><span> Set Up Custom Mapping </span> </a>
+                            </li>
+                            <li class="menu-item" data-section="section-4">
+                                <a href="javascript:void(0)"><i class="settings-icons-position reports-icons mobile-icons"></i><span>Geocoding Status</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col right-content-area">
+                    
+                    <button type="button" class="menu-btn d-lg-none" id="open-button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-fw fa-th-large"></i>
+                    </button>
+                    
+                    <div id="section-2" class="custom-setting">
+                        <div class="card border-0">
+                            <div class="card-header">
+                                <img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/Geocoding-Selection-red.png')}" />
+                                <span class="title">Set Up Google APIs</span> 
+                            </div>
+                            <div class="card-body">
+                                <div class="geocding-section">
+                                    <p class="sub-title">Map Plotter uses free Google APIs to convert your addresses to points on the map. Please set up your personal Google API key.</p>
+                                    <ul class="nav nav-tabs custom-h-tabs" role="tablist">
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#geocodingapi" class="nav-link active" aria-controls="geocodingapi" role="tab" data-toggle="tab"> Set Up your Google API key </a>
+                                        </li>                               
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="google-api-tab geocoding-tab tab-pane active" id="geocodingapi">
+                                            <p><b>Please follow these steps to generate the free Google API key:</b></p>
+                                            <ul>
+                                                <li><span>Click <a target="_blank" rel="noopener noreferrer" class="here-link" href="https://console.developers.google.com/apis/"><b>here</b></a> to sign into your Google account and follow the instructions to obtain your free Google API key.</span></li>
+                                                <li><span>Select the <strong>Credentials</strong> tab in the left pane of the Google APIs page.</span></li>
+                                                <ul><li><span>If you do not already have an API project, click <strong>Create a Project</strong> to create one.</span></li></ul>
+                                                <li><span>Click <strong>Create credentials</strong> and select <strong>API key</strong>.</span></li>
+                                                <li><span>Copy this API key and paste it in the <strong>Google API Key</strong> textbox below.</span></li>
+                                            </ul>
+                                            <form class="form-horizontal googleapis">
+                                                <div class="form-group">
+                                                    <!--label class="sr-only col-sm-2" for="geocodingapilabel">Geocode API</label-->
+                                                    <div class="col-12 col-lg-6 col-xl-5">
+                                                        <input id="googleKey" type="text" class="form-control" placeholder="Google API key" />
+                                                        <span class="text-danger invisible">Please Enter Google API Key</span>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <hr/>
+                                            <p><b>Activate the Google APIs</b></p>
+                                            <p>After you have generated the Google API key, please activate the 4 required APIs:</p>
+                                            <ul class="activate-api">
+                                                <li><strong>1) Directions API</strong> for providing directions between multiple places.</li> 
+                                                <li><strong>2) Geocoding API</strong> for converting addresses into latitudes and longitudes.</li>
+                                                <li><strong>3) Maps JavaScript API</strong> for rendering the map.</li>
+                                                <li><strong>4) Places API</strong> for searching nearby places.</li>
+                                            </ul>
+                                            <ul>
+                                                <li><span>To enable the APIs for the generated Google key, go to the <strong>Library</strong> tab in the left pane of the Google APIs page (go to the same page that you opened while generating the Google API key, or click <a target="_blank" rel="noopener noreferrer" class="here-link" href="https://console.developers.google.com/apis/"><b>here</b></a> again).</span></li>
+                                                <li><span>Under <strong>Google Maps APIs,</strong> click <strong>View All</strong>.</span></li>
+                                                
+                                                <li><span>Select <strong>Directions API</strong>.</span></li>
+                                                <ul><li><span>Click <strong>Enable</strong> to activate it.</span></li></ul>
+                                                
+                                                <li><span>Select <strong>Geocoding API</strong> (be careful, don't confuse this with the <strong>Geolocation API</strong>).</span></li>
+                                                <ul><li><span>Click <strong>Enable</strong> to activate it.</span></li></ul>
+                                                
+                                                <li><span>Select <strong>Maps JavaScript API</strong>.</span></li>
+                                                <ul><li><span>Click <strong>Enable</strong> to activate it.</span></li></ul>
+                                                
+                                                <li><span>Select <strong>Places API</strong>.</span></li>
+                                                <ul><li><span>Click <strong>Enable</strong> to activate it.</span></li></ul>
+                                                
+                                            </ul>
+                                            <p>And the APIs are all set! Click <strong>Save</strong>, and then continue to the 'Set Up Custom Mapping' tab.</p> 
+                                            
+                                            <div class="text-right subBtn savegoogle">
+                                                <button id="saveGoogle" type="button" class="btn btn-mapplotterbutton">Save</button>
+                                            </div>
+                                        </div>                               
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                    <div id="section-3" style="display:none;" class="custom-setting">
+                        <div class="card border-0">
+                            <div class="card-header">
+                                <img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/Custom-Settings_RED.png')}" />
+                                <span class="title">Set Up Custom Mapping</span>
+                            </div>
+                            <div class="card-body">
+                                <p class="hint-txt"> Please identify the appropriate address fields associated with your standard as well as custom objects, in order for them to be seen on the map.</p>
+                                <div class="custom-mapping-section">
+                                    <p class="sub-title txt-title margin-b"> Select Object for Field Mapping</p>
+                                    <span id="savefail" class="error-text-msg invisible">Failed to Save.</span>
+                                </div>
+                                <div class="object-mapping">
+                                    <div class="object-selection-box obj-group">
+                                        <div class="form-group row no-gutters">
+                                            <label for="name" class="col-2 col-sm-1 lblname">Objects</label>
+                                            <div class="select-box col-10 col-sm-3 selectCont">
+                                                <select id="settingsObjContainer" class="form-control">
+                                                    <!-- #customSettObjTemplate will render here -->
+                                                </select>
+                                                <div class="error-text-msg invisible">Select at least one object to save.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="object-entry-panel" style="display: none;" class="object-form-wrapper">
+                                    <!--form class="form-horizontal"-->
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 col-lg-4 ">
+                                            <div class="form-group row">
+                                                <label class="col-3 lblname" for="entitynamelabel">Entity Name</label>
+                                                <div class="col-8 selectCont no-padding">
+                                                    <div class="select-box">
+                                                        <select data-lbl="Entity Name" id="objEntity" class="form-control select-control">
+                                                            <!-- #customSettObjTemplate will render here -->
+                                                        </select>
+                                                        <span class="error-text-msg invisible">Please select Entity Name.</span>
+                                                    </div>                                                                                                        
+                                                </div>
+                                                <div class="col-1 refModelCont">
+                                                    <a class="queryLink pull-left openRefModal" href="javascript:void(0)">
+                                                        <i class="fa external-icon fa-external-link"></i>
+                                                    </a>
+                                                </div>                                          
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4 ">
+                                            <div class="form-group row">
+                                                <label class="col-3 lblname" for="streetlabel">Street</label>
+                                                <div class="col-8 selectCont no-padding">
+                                                    <div class="select-box">
+                                                        <select data-lbl="Street" id="objStreet" class="form-control select-control">
+                                                            <!-- #customSettObjTemplate will render here -->
+                                                        </select>
+                                                        <span class="error-text-msg invisible">Please select Street Name.</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 refModelCont clean-right">
+                                                    <a class="queryLink pull-left  openRefModal" href="javascript:void(0)">
+                                                        <i class="fa external-icon fa-external-link"></i>
+                                                    </a>
+                                                </div>                                                    
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4 ">
+                                            <div class="form-group row">
+                                                <label class="col-3 lblname" for="countrylabel">Country</label>
+                                                <div class="col-8 selectCont no-padding">
+                                                    <div class="select-box">
+                                                        <select data-lbl="Country" id="objCountry" class="form-control select-control">
+                                                            <!-- #customSettObjTemplate will render here -->
+                                                        </select>
+                                                        <span class="error-text-msg invisible">Please select Country Name.</span>
+                                                    </div>                                                                                                        
+                                                </div>
+                                                <div class="col-1 refModelCont clean-right">
+                                                    <a class="queryLink pull-left  openRefModal" href="javascript:void(0)">
+                                                        <i class="fa external-icon fa-external-link"></i>
+                                                    </a>
+                                                </div>                                                
+                                            </div>
+                                        </div>    
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 col-lg-4 ">
+                                            <div class="form-group row">
+                                                <label class="col-3 lblname" for="citylabel"> City</label>
+                                                <div class="col-8 selectCont no-padding">
+                                                    <div class="select-box">
+                                                        <select data-lbl="City" id="objCity" class="form-control select-control">
+                                                            <!-- #customSettObjTemplate will render here -->
+                                                        </select>
+                                                        <span class="error-text-msg invisible">Please select City Name.</span>
+                                                    </div>                                                                                                        
+                                                </div>
+                                                <div class="col-1 refModelCont clean-right">
+                                                    <a class="queryLink pull-left  openRefModal" href="javascript:void(0)">
+                                                        <i class="fa external-icon fa-external-link"></i>
+                                                    </a>
+                                                </div>                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4 ">                                                
+                                            <div class="form-group row">
+                                                <label class="col-3 lblname" for="Statelabel">State</label>
+                                                <div class="col-8 selectCont no-padding">
+                                                    <div class="select-box">
+                                                        <select data-lbl="State" id="objState" class="form-control select-control">
+                                                            <!-- #customSettObjTemplate will render here -->
+                                                        </select>
+                                                        <span class="error-text-msg invisible">Please select State Name.</span>
+                                                    </div>    
+                                                </div>
+                                                <div class="col-1 refModelCont clean-right">
+                                                    <a class="queryLink pull-left  openRefModal" href="javascript:void(0)">
+                                                        <i class="fa external-icon fa-external-link"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6 col-lg-4 ">                                                
+                                            <div class="form-group row">
+                                                <label class="col-3 lblname" for="postallabel">Postal Code</label>
+                                                <div class="col-8 selectCont no-padding">
+                                                    <div class="select-box">
+                                                        <select data-lbl="Postal Code" id="objPostal" class="form-control select-control">
+                                                            <!-- #customSettObjTemplate will render here -->
+                                                        </select>
+                                                        <span class="error-text-msg invisible">Please select Postal Code.</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 refModelCont clean-right">
+                                                    <a class="queryLink pull-left  openRefModal" href="javascript:void(0)">
+                                                        <i class="fa external-icon fa-external-link"></i>
+                                                    </a>
+                                                </div>                                                
+                                            </div>
+                                        </div>       
+                                    </div>
+                                    <!--/form-->
+                                </div>
+                                <div class="d-flex justify-content-end form-action-btn">
+                                    <button id="saveCustomObj" type="button" class="btn btn-mapplotterbutton saveCustomObj">Save</button>
+                                </div>
+                                <hr/>
+                                <div id="geocodeObjContainer" class="geoCodeObjectTable">
+                                    <!-- #objToGeocodeTemplate will render here -->
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div id="section-4" class="custom-setting setting-report" style="display:none;">
+                        <div class="card border-0">
+                            <div class="card-header">
+                                <img src="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/images/Reports_red.png')}" />
+                                <span class="title">Geocoding Status</span>                              
+                            </div>
+                            <div class="card-body">
+                                <div class="custom-mapping-section">
+                                    <p class="sub-title p-bottom"> Select Object to View Status</p>
+                                    <p class="hint-txt"> View the status of your geocoded objects - click the numbers below to see which records have been geocoded successfully, which are pending, and which have failed.</p>
+                                    <div id="notgeocode" class="error-text-msg invisible"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-lg-12  ">
+                                        <div class="object-mapping">
+                                            <div class="object-selection-box pl-3">
+                                                <form class="form-horizontal">
+                                                    <div class="form-group row">                                                    
+                                                        <div class="col-12 col-sm-6 col-md-3">
+                                                            <select id="customObjList" class="form-control select-control">
+                                                                <!-- #customObjTemplate will render here -->
+                                                            </select>
+                                                            <div class="error-text-msg invisible">Select at least one object to save.</div>
+                                                        </div>
+                                                        <div class="col-12 col-sm-6 col-md-3">
+                                                            <button id="showResult" type="button" class="btn btn-primary btn-mapplotterbutton" >Show Results</button>
+                                                            <!--onclick="sendEventToGA('Geocoding Report.','Get geocoding report.','Geocoding report of data points.');"-->
+                                                            <div class="dropdown exportDrop" style="display:none;">
+                                                                
+                                                                <button class="btn btn-default btn-mapplotterbutton dropdown-toggle" type="button" id="exportMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    Export</button>
+                                                                <ul class="dropdown-menu" aria-labelledby="exportMenu">
+                                                                    <li class="dropdown-item" id="excelButtonCont"></li>
+                                                                </ul>
+                                                            </div>  
+                                                        </div>                                                    
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-12">
+                                        <div class="object-mapping">
+                                            <ul class="report-status d-flex flex-wrap justify-content-start">
+                                                <li data-status="Success">Success &nbsp;<span class="value green" id="successCnt"></span></li>
+                                                <li data-status="Failed">Failed &nbsp;<span class="value red" id="failedCnt"></span></li>
+                                                <li data-status="Pending">Pending &nbsp;<span class="value yellow" id="pendingCnt"></span></li>
+                                                <li data-status="Total">Total &nbsp;<span class="value black" id="totalCnt"></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="reportResultContainer" class="reportResultTable">
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="bs">
+            <div id="deleteConfirm" class="modal confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header">
+                            <h2 class="modal-title alert-title"> Confirm Delete </h2>                            
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="#" class="form">
+                            <div class="modal-body">
+                                <p class="call_popup">Are you sure? Custom mapping for <b><span id="delObj"></span></b> will be deleted.</p>
+                                <div class="modal-footer confirm-footer">
+                                    <button id="deleteYes" type="button" class="btn btn-primary btn-delete btn-sm blackbtn">Delete</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="deactivateConfirm" class="modal confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header">                                
+                            <h2 class="modal-title alert-title">Deactivate Key Confirm</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p class="call_popup">Are you sure? Current Google API Key will be deactivated and can not activated again.</p>
+                            <div class="modal-footer confirm-footer">
+                                <button data-dismiss="modal" type="button" class="btn btn-default btn-sm blackbtn">Cancel</button>
+                                <button id="confirmDeactiveKey" type="button" class="btn btn-primary btn-delete btn-sm redbtn triggerState">Deactivate</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Sandesh Start -->      
+            
+            <div id="deactivateEmailConfirm" class="modal confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header">                                
+                            <h2 class="modal-title alert-title">Email Confirm</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p class="call_popup">Are you sure? Current 
+                                will be deactivated.</p>
+                            <div class="modal-footer confirm-footer">
+                                <button id="cancelDeactiveKeyEmail" data-dismiss="modal" type="button" class="btn btn-default btn-sm blackbtn">Cancel</button>
+                                <button id="confirmDeactiveKeyEmail" type="button" class="btn btn-primary btn-delete btn-sm redbtn triggerState">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+            <!-- Sandesh End -->
+            <div id="geocodeAlertModal" class="modal confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header">
+                            <h2 class="modal-title alert-title">Map Plotter</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="#" class="form">
+                            <div class="modal-body">
+                                <p class="call_popup">Apex job is Processing. Please wait until it finish.</p>
+                                <div class="modal-footer confirm-footer">
+                                    <button type="button" data-dismiss="modal" class="btn btn-primary btn-delete btn-sm redbtn">OK</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="refModal" class="modal confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header">
+                            <h2 class="modal-title alert-title">Reference Fields</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p class="call_popup">Select reference field</p>                                
+                            <select id="refSelect" class="form-control select-control">
+                            </select>
+                            <div class="modal-footer confirm-footer">                                    
+                                <button id="saveRef" type="button" class="btn btn-primary btn-delete btn-sm redbtn triggerState">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Promotion alert --->
+            <div id="promotionAlert" class="modal confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header">                                
+                            <h2 class="modal-title alert-title">Map Plotter</h2>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <p class="call_popup">If you have awesome stuff to say about Map Plotter, please tell the world!</p>
+                            <div class="modal-footer confirm-footer">
+                                <button id="gotoAction" type="button" class="btn btn-primary btn-delete btn-sm redbtn triggerState">Write a review</button>
+                                <button id="remindeMeLater" data-dismiss="modal" type="button" class="btn btn-default btn-sm blackbtn">Remind me later</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <!-- --->
+            <div aria-labelledby="mySmallModalLabel" class="modal confirm-dialog" id="mpAlert" role="dialog" tabindex="-1" style="display: none;">
+                <div class="modal-dialog modal-sm common-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header"> 
+                            <h2 class="modal-title alert-title">Map Plotter</h2>
+                        </div>
+                        <form action="#" class="form" method="post">
+                            <div class="modal-body">
+                                <p id="alertMsg" class="call_popup">Alert message</p>
+                                <div class="modal-footer confirm-footer text-center">  
+                                    <button id="ok" class="btn btn-primary btn-delete btn-sm redbtn" data-dismiss="modal"  type="button">OK</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </apex:define>
+    
+    <script type="text/javascript">
+    var Enviroment = "{!JSINHTMLENCODE($User.UIThemeDisplayed)}";  
+    var namespacevariable = "{!JSINHTMLENCODE(namespacevar)}";         
+  
+    // method to fetch custom objs (reports tab)
+    var customObjList = '{!$RemoteAction.Ctrl_MapPlotter.GetSelectedDataPoints}';
+    // method to fetch reports data on selection of custom obj
+    var getDataMethod = '{!$RemoteAction.Ctrl_MapPlotter.showResult}';
+    // method to fetch TotalMapPoints cout of selected object 
+    var getTotalMapPoints = '{!$RemoteAction.Ctrl_MapPlotter.GetTotalMapPointsforObject}';
+    // method to get custom setting objects
+    var getObjects = '{!$RemoteAction.Ctrl_MapPlotter.Getobjects}';
+    // method for (Objects Going To Geocode) table
+    var getGeocodeTable = '{!$RemoteAction.Ctrl_MapPlotter.GetSelectedDataPoints}';
+    // to get obj related data on selection change            
+    var getObjSelection = '{!$RemoteAction.Ctrl_MapPlotter.Getfields}';
+    // save custom object 
+    var saveCustomObjMethod = '{!$RemoteAction.Ctrl_MapPlotter.SaveMapping}';
+    //Start Geocoging method
+    var startGeocodingMethod = '{!$RemoteAction.Ctrl_MapPlotter.StartGeocoding1}';
+    // delete custom object
+    var deleteCustomObjMethod = '{!$RemoteAction.Ctrl_MapPlotter.DeleteDataPointNew}';
+    // save Google API key
+    var saveGoogleAPIMethod = '{!$RemoteAction.Ctrl_MapPlotter.SaveGeoCodingAPIKey}';
+    // save World Weather API key
+    var saveWeatherAPIMethod = '{!$RemoteAction.Ctrl_MapPlotter.SaveWeatherKey}';
+    // get API keys
+    var getAPIKeysMethod = '{!$RemoteAction.Ctrl_MapPlotter.GetAPIKeys}';   
+    // get GoogleAP IKey API 
+    var getGoogleAPIKey = '{!$RemoteAction.Ctrl_MapPlotter.getStoredGoogleAPIKey}';  
+    // to get fields related to REFERENCE type--- custom mapping
+    var getReferenceFields = '{!$RemoteAction.Ctrl_MapPlotter.getReferencedToFields}';
+    // Promotional alerts functions
+    var ReminderPageVisit= '{!$RemoteAction.Ctrl_MapPlotter.ReminderPageVisit}';
+    var PageVisited= '{!$RemoteAction.Ctrl_MapPlotter.PageVisited}';
+    var getPromotionData = '{!$RemoteAction.Ctrl_MapPlotter.getPromotionData}';
+    
+    Visualforce.remoting.timeout = 120000;
+    </script>       
+    
+    <script type="text/template" id="refFieldTemplate">
+    <% _.each(Object.keys(data), function(rf){ %>
+        <option value="<%= data[rf] %>"><%= rf %></option>
+        <% }); %>
+            </script>        
+    
+    <script type="text/template" id="customObjTemplate">
+    <% _.each(data, function(cobj){ %>
+        <% if(cobj.IsGeocoded == true){ %>
+            <option value="<%= cobj.Entity %>"><%= cobj.Entity.replace('__c','').replace(namespacevariable,'') %></option>
+            <% } %>
+                <% }); %>
+                    </script>
+    
+    <script type="text/template" id="customSettObjTemplate">
+    <option>Select</option>
+    <% _.each(_.sortBy(data, 'Label'), function(cobj){ %>
+        <option data-type="<%= cobj.Type %>" value="<%= cobj.APIName %>"><%= cobj.Label %></option>
+        <% }); %>
+            </script>
+    
+    <script type="text/template" id="objToGeocodeTemplate">
+    <table id="objToGeocode_table" class="table table-striped dataTable">
+        <thead class="tableheadbg">
+            <tr>
+            <th>Object</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Street</th>
+        <th>Postal Code</th>
+        <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <% _.each(data, function(geocodeObj){ %>
+                <tr>
+                <td id="<%=geocodeObj.Entity%>"><%= geocodeObj.Entity.replace('__c','').replace(namespacevariable,'') %></td>
+                <td><%= geocodeObj.Country.replace('__c','').replace(namespacevariable,'') %></td>
+                <td><%= geocodeObj.State.replace('__c','').replace(namespacevariable,'') %></td>
+                <td><%= geocodeObj.City.replace('__c','').replace(namespacevariable,'') %></td>
+                <td><%= geocodeObj.Street.replace('__c','').replace(namespacevariable,'') %></td>
+                <td><%= geocodeObj.Postal_Code.replace('__c','').replace(namespacevariable,'') %></td>
+                
+                <td>
+                    <% if(geocodeObj.IsGeocoded === false){ %>
+                        <button data-id="<%= geocodeObj.Id %>" data-ename="<%= geocodeObj.Entity %>" class="btn btn-default action-btn redbtn startgeo" type="button" title="Start Geocoding the object">Geocode</button>                               
+                        <% } else{ %>
+                            <button data-id="<%= geocodeObj.Id %>" data-ename="<%= geocodeObj.Entity %>" class="btn btn-default action-btn greybtn startgeo" type="button" title="Start Geocoding the object">Geocoded</button>
+                            <% } %>
+                                <button data-id="<%= geocodeObj.Id %>" data-ename="<%= geocodeObj.Entity %>" class="btn btn-default action-btn blackbtn deleteobj" type="button">Delete</button>                          
+                                </td>
+                                </tr>
+                                <% }); %>
+                                    </tbody>
+                                </table>
+                                </script>
+    
+    <script type="text/template" id="resultsTemplate">
+    <table id="resultsTable" class="table table-striped  dataTable">
+        <thead class="tableheadbg">
+            <tr>
+            <th>Name</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Postal Code</th>
+        <th>Country</th>
+        <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% _.each(data.MapMPPointGeocodeResult, function(resultObj){ %>
+                <tr>
+                <td><a data-id="<%= resultObj.RecordID %>" onclick="gotoAccountDetails(this)" class="accLink" target="_blank" rel="noopener noreferrer" href="/<%= resultObj.RecordID %>"><%= resultObj.Label %></a></td>
+                    <td><%= resultObj.Street %></td>
+                <td><%= resultObj.City %></td>
+                <td><%= resultObj.State %></td>
+                <td><%= resultObj.Postal_Code %></td>
+                <td><%= resultObj.Country %></td>
+                <td><%= resultObj.Status %></td>
+                </tr>
+                <% }); %>
+                    </tbody>
+                </table>
+                
+                
+                </div> 
+                </script>
+    
+    <script type="text/template" id="googleAPITemplate">
+    <table id="googleAPITable" class="table table-striped  dataTable">
+        <thead class="tableheadbg">
+            <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Token</th>
+            <th>Quota</th>
+            <th>Active</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% _.each(data, function(apiObj, i){ %>
+                    <tr>
+                    <td><%= new Date(apiObj.StartDate).toDateString() %></td>
+                <td><%= new Date(apiObj.EndDate).toDateString() %></td>
+                <td><%= apiObj.Key %></td>
+                <td><%= apiObj.Limit %></td>
+                <td>
+                    <% if(apiObj.Status === "true"){ %>
+                        <span class="label label-success">Active</span>
+                        <span data-keyrecid="<%= apiObj.Id %>" class="label label-default label-deactive deactiveapi">Deactivate</span>
+                        <% } else{ %>
+                            <span class="label label-default">Inactive</span>
+                            <% } %>                            
+                                </td>
+                            </tr>
+                            <% }); %>
+                                </tbody>
+                            </table>
+                            </script>
+</apex:page>

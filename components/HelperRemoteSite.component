@@ -1,0 +1,56 @@
+<apex:component controller="RemoteSiteHelperController" allowDML="true">
+    <apex:attribute name="rssName" type="String" required="true" assignTo="{!rssNameString}" default="mdapi" description="The name of the remote site setting you want to create." />
+    <apex:attribute name="rssDescription" type="String" required="true" default="mdapi" description="The description of the remote site setting you want to create." />
+   
+    <apex:attribute name="pageSectionTitle" type="String" required="true" default="Tool using Metadata API" description="This is the section Title for the page." />
+    <apex:attribute name="pageSectionSubTitle" type="String" required="true" default="Welcome" description="This is the section sub title for the page." />
+    
+    
+
+    <script>
+     window.onload = function() { createRemoteSite(); } 
+        function createRemoteSite()
+        { 
+            // Disable button 
+          //  document.getElementById('createremotesitebtn').disabled = true;
+            // Calls the Metdata API from JavaScript to create the Remote Site Setting to permit Apex callouts
+            var binding = new XMLHttpRequest();
+            var request = 
+                '<?xml version="1.0" encoding="utf-8"?>' + 
+                '<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'+
+                    '<env:Header>' + 
+                        '<urn:SessionHeader xmlns:urn="http://soap.sforce.com/2006/04/metadata">' + 
+                            '<urn:sessionId>{!JSINHTMLENCODE($Api.Session_ID)}</urn:sessionId>' + 
+                        '</urn:SessionHeader>' + 
+                    '</env:Header>' + 
+                    '<env:Body>' +
+                        '<createMetadata xmlns="http://soap.sforce.com/2006/04/metadata">' + 
+                            '<metadata xsi:type="RemoteSiteSetting">' + 
+                                '<fullName>{!JSINHTMLENCODE(rssName)}</fullName>' + 
+                                '<description>{!JSINHTMLENCODE(rssDescription)}</description>' + 
+                                '<disableProtocolSecurity>false</disableProtocolSecurity>' + 
+                                '<isActive>true</isActive>' + 
+                                '<url>https://{!URLENCODE(Host)}</url>' +
+                            '</metadata>' +
+                        '</createMetadata>' +
+                    '</env:Body>' + 
+                '</env:Envelope>';
+            binding.open('POST', 'https://{!URLENCODE(Host)}/services/Soap/m/31.0');
+            binding.setRequestHeader('SOAPAction','""');
+            binding.setRequestHeader('Content-Type', 'text/xml');
+            binding.onreadystatechange = 
+                function() { 
+                    if(this.readyState==4) {
+                        var parser = new DOMParser();
+                        var doc  = parser.parseFromString(this.response, 'application/xml');
+                        var errors = doc.getElementsByTagName('errors');
+                        var messageText = '';
+                        for(var errorIdx = 0; errorIdx < errors.length; errorIdx++)
+                            messageText+= errors.item(errorIdx).getElementsByTagName('message').item(0).innerHTML + '\n';
+                        /*displayMetadataResponse(messageText);*/
+                    } 
+                }
+            binding.send(request);
+        }
+    </script>
+</apex:component>

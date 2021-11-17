@@ -1,0 +1,482 @@
+<apex:page showHeader="true" sidebar="false" tabStyle="Map_Plotter__tab" controller="Ctrl_MapPlotter" standardStylesheets="false" doctype="html-5.0" >
+    <!-- HEAD -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <apex:define name="header">
+        
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/bootstrap/bootstrap.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/animate.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/chkstyle.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/font-awesome.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/jquery.dataTables.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/scroller.dataTables.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/dataTables.fontAwesome.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/buttons.dataTables.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/swiper.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/bootstrap-nav-tab-scrollable.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/color-picker.min.css?d=')+randomNumber}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/style.css?d=')+randomNumber}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/css/print.css')}" html-media="print"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/markerclusterer.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/oms.min.js')}" />         
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/geoxml3_kmlStr.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jquery-3.3.1.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/underscore-min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/backbone-min.js')}"/>
+        
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/html2canvas.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/popper.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/bootstrap/bootstrap.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jquery.dataTables.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/dataTables.bootstrap4.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/dataTables.scroller.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/dataTables.buttons.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jszip.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/pdfmake.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/vfs_fonts.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/buttons.html5.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/bootstrap-nav-tab-scrollable.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jquery.nicescroll.min.js')}"/>
+        <!-- Library for Drag-Drop waypoints -->
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/Sortable.js')}"/>
+        <!-- Library for weather API icons -->
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/skycons.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/swiper.min.js')}"/>
+        
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript, '/SIMStyleAndJavascript/js/libs/color-picker.min.js')}"/>
+        
+    </apex:define>
+    <style>
+        .backdrophide {
+            display: none;
+        }
+    </style>
+    <!-- BODY -->
+    <apex:define name="body">
+        <div id="loader-overlay" class="overlay">
+            <div class="loader">&nbsp;</div>
+        </div>
+        <!--full-ht-->
+        <div id="homeViewContainer" class="bs wrapper d-flex flex-column">
+            <div id="initLoad">Loading...</div>
+            
+            <!-- #homeTemplate will render here -->
+        </div>
+        <div id="mapDetailViewContainer" class="hidden-print" style="display: none;">
+            <!-- #mapDetailViewTemplate will render here -->
+        </div>
+        
+        <!-- ADD/EDIT Filter Modal -->
+        <div class="bs">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg plot-filter-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header alert-header">
+                            <h4 class="modal-title alert-title" id="myModalLabel">Manage Filter</h4>
+                            <button type="button" class="close closeFilter" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>                        
+                        </div>
+                        <div class="modal-body">
+                            <ul class="nav nav-tabs custom-h-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="manageText" aria-controls="managequery" aria-expanded="true" data-toggle="tab" href="#manageQuery" role="tab"> Manage Filter</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="addEditText" aria-controls="editquery" aria-expanded="false" data-toggle="tab" href="#editQuery" role="tab">Create Filter</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade show active" id="manageQuery">
+                                    <div class="col-12 col-sm-12 no-padding">
+                                        <div class="table-container">
+                                            <!--div class="table-container-header">
+                                            <table class="table table-striped table-hover table-condensed">
+                                            
+                                            </table>
+                                            </div-->
+                                            <div class="table-container-body">
+                                                <table class="table table-striped table-hover manage-filter-table">
+                                                    <thead class="table-headerbg">
+                                                        <tr>
+                                                            <th>Filter Name</th>
+                                                            <th>Description</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <colgroup>
+                                                        <col style="width:30%;"/>                                                    
+                                                        <col style="width:40%;"/>
+                                                        <col style="width:30%;"/>
+                                                    </colgroup>
+                                                    <tbody id="filterContainer">
+                                                        <!-- filterListTemplate will render here -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="editQuery">
+                                    <div class="widget-box-panel">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="lblname" for="entitynamelabel">Filter  Name</label>
+                                                    <input type="text" class="form-control" id="queryName"/> 
+                                                    <span id="NameError" style="display:none" class="error-text-msg">Please Enter Query Name.</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">                                                 
+                                                    <label class="lblname" for="entitynamelabel">Description</label>
+                                                    <textarea id="filterDesc" class="form-control" rows="2"></textarea>
+                                                    <span class="error-text-msg" style="display:none">Please write description.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="lblname" for="citylabel">Base Objects</label>
+                                                    <select class="form-control select-control" id="baseObject">
+                                                        <!-- customObjListTemplate will render here -->
+                                                    </select>
+                                                    <span id="objectError" style="display:none" class="error-text-msg">Please select Base Object.</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="lblname" for="citylabel">Filter Type</label>
+                                                    <select class="form-control select-control" id="filterType">
+                                                        <option value="normal">Normal</option>
+                                                        <option value="colored">Colored</option>
+                                                    </select>
+                                                    <span id="typeError" style="display:none" class="error-text-msg">Please select Filter Type.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-box-panel">
+                                        <div class="d-flex justify-content-end rptpanel-title">
+                                            <a id="addFilter" href="javascript:void(0);" class="btn btn-primary btn-sm redbtn eq-btn queryLink disabledObj">Add Criteria</a>
+                                            <a id="deleteFilterRow" href="javascript:void(0);" class="btn btn-primary btn-sm blackbtn eq-btn queryLink disabledObj">Delete Criteria</a>
+                                        </div>
+                                        <div id="scrollBottom" class="scroll-bottom">
+                                            <ul id="filterListContainer" class="list-unstyled">
+                                                <!-- initialFilterList will render here -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="refineFilterContainer" class="widget-box-panel">
+                                        <!-- refineFilter will render here -->
+                                    </div>
+                                    <div id="filterCollapse" class="widget-box-panel">
+                                        <!--div class="col-12"-->
+                                        <div class="form-group row align-items-center">
+                                            <label class="col-12 col-lg-2 lblname" for="citylabel"> Filter Logic</label>      
+                                            <div class="col-12 col-lg-5">
+                                                <input id="fLogic" type="text" class="form-control fresh" onfocus="$(this).removeClass('fresh');" placeholder="Enter Filter Logic"/> 
+                                            </div>
+                                            <div class="col-12 col-lg-5" style="display:none;">
+                                                <input id="refinefLogic" type="text" class="form-control fresh" onfocus="$(this).removeClass('fresh');" placeholder="Enter Refine Filter Logic" />
+                                            </div>
+                                        </div>
+                                        <!--/div-->
+                                    </div>
+                                    <div class="modal-footer modal-Bottom-footer">
+                                        <button type="button" class="btn btn-default blackbtn eq-btn closeFilter" data-dismiss="modal">Cancel</button>
+                                        <button id="saveFilter"  type="button" class="btn btn-primary btn-mapplotterbutton eq-btn">Save Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- Narayan Start --> 
+<div id="getDirectionConfirm" class="modal fade confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Map Plotter</h2>
+            </div>
+            <div class="modal-body">
+                <p class="call_popup">Do you want to get the route to this location from your current location?</p>
+                <div class="modal-footer confirm-footer">
+                    <button id="getRouteFalse" data-dismiss="modal" type="button" class="btn btn-default btn-sm blackbtn">Cancel</button>
+                    <button id="getRouteTrue" type="button" class="btn btn-primary btn-sm redbtn">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Narayan End -->
+<!-- popup-->
+<div aria-labelledby="mySmallModalLabel" class="modal fade confirm-dialog" id="mpAlert" role="dialog" tabindex="-1" style="display: none;">
+    <div class="modal-dialog modal-sm common-dialog">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Map Plotter</h2>
+            </div>
+            <form action="#" class="form" method="post">
+                <div class="modal-body">
+                    <p id="alertMsg" class="call_popup">Alert message</p>
+                    <div class="modal-footer confirm-footer text-center">  
+                        <button id="ok" class="btn btn-primary btn-delete btn-sm redbtn" data-dismiss="modal"  type="button">OK</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Picklist modal -->
+<div id="pickListModal" class="bs modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-sm modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">External Options</h2>
+                <button type="button" class="close" data-dismiss="modal" onclick="$('#pickListModal').hide();$('.modal-backdrop')[1].remove();" aria-hidden="true">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="pickValues" class="modal-body">
+                <!-- dynamically inputs will render here -->
+            </div>
+            <div class="modal-footer confirm-footer" style="margin-top:10px;">
+                <button id="savePickList" type="button" class="btn btn-primary btn-sm redbtn">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cd-popup" id="selectColorPopup" role="alert">
+    <div class="cd-popup-container cd-modal-sm">
+        <div class="modal-header alert-header">
+            <h2 class="modal-title alert-title">Select Color</h2>
+        </div>
+        <div class="modal-body modal-cd-popup-body">
+            <div class="form-group">
+                <div class="col-12 col-sm-12">
+                    <input id="popupColorVal" type="text" value="#000"/>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer confirm-footer" style="margin-top:10px;">
+            <button type="button" onclick="$('#selectColorPopup').removeClass('is-visible');" class="btn btn-default btn-sm blackbtn">Cancel</button>
+            <button id="saveColor" type="button" class="btn btn-default btn-sm redbtn">Save</button>                               
+        </div>
+    </div>
+    <!-- cd-popup-container -->
+</div>
+<!-- cd-popup --> 
+<!-- Promotion alert --->
+<div id="promotionAlert" class="modal confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Map Plotter</h2>
+            </div>
+            <div class="modal-body">
+                
+                <p class="call_popup">If you have awesome stuff to say about Map Plotter, please tell the world!</p>
+                <div class="modal-footer confirm-footer">
+                    <button id="gotoAction" type="button" class="btn btn-primary btn-delete btn-sm redbtn triggerState">Write a review</button>    
+                    <button id="remindeMeLater" data-dismiss="modal" type="button" class="btn btn-default btn-sm blackbtn">Remind me later</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="changeTypeConfirm" class="modal fade confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Confirm Filter Type Change</h2>
+            </div>
+            <div class="modal-body">
+                <p class="call_popup">Are you sure? Selected criteria will be lost.</p>
+            </div>
+            <div class="modal-footer confirm-footer">
+                <button id="changeTypeNo" type="button" class="btn btn-default btn-sm blackbtn">Cancel</button>
+                <button id="changeTypeYes" type="button" class="btn btn-primary btn-sm redbtn">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="deleteFilterConfirm" class="modal fade confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Confirm Delete Filter</h2>
+            </div>
+            <div class="modal-body">
+                <p class="call_popup">Are you sure? Selected filter will be lost.</p>
+            </div>
+            <div class="modal-footer confirm-footer">
+                <button id="deleteFilterNo" type="button" class="btn btn-default btn-sm blackbtn">Cancel</button>
+                <button id="deleteFilterYes" type="button" class="btn btn-primary btn-sm redbtn">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<div id="ExportFilterConfirm" class="modal fade confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Confirm Export Filter</h2>
+            </div>
+            <div class="modal-body">
+                <p class="call_popup">Do you want to export all the records?</p>
+            </div>
+            <div class="modal-footer confirm-footer">
+                <button onclick="$('#ExportFilterConfirm').modal('hide');" type="button" class="btn btn-default btn-sm blackbtn">No</button>
+                <button id="exportResult" type="button" class="btn btn-primary btn-sm redbtn">Yes</button>
+            </div>
+        </div>
+    </div>
+</div> 
+            
+<div id="massUpdatesMsgModal" class="modal fade confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Mass Update</h2>
+            </div>
+            <div class="modal-body">
+                <p id="massupdateMsg" class="call_popup"></p>
+            </div>
+            <div class="modal-footer confirm-footer">
+                 <button onclick="$('#massUpdatesMsgModal').modal('hide');" type="button" class="btn btn-primary btn-sm redbtn">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>            
+        
+<div id="massupdatemodal" class="modal fade confirm-dialog" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header alert-header">
+                <h2 class="modal-title alert-title">Mass Update</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                     <div class="col-sm-6 col-xs-12">     
+                        <div class="form-group">
+                            <label class="dataType" for="dataType">Select Field</label>
+                             <select class="form-control select-control" id="dataObject">
+                                    <option value="select">Select</option>
+                              </select>
+                             <span class="error-text-msg" id="massObjectError" style="display:none">Please select the field to change.</span>
+                        </div>
+                    </div>
+                     <div class="col-sm-6 col-xs-12 dataInput">
+                        <div class="form-group">
+                            <label class="dataType" for="dataType"></label>
+                            <div id="inputDiv">
+                            </div>
+                           <!--<input class="form-control" id="dataInput" type="text" placeholder="Enter the value to update"/>-->
+                           <span class="error-text-msg"></span>
+                        </div>
+                     </div>
+            </div>
+            <div class="modal-footer confirm-footer">
+                <button type="button" onclick="$('#massupdatemodal').modal('hide');" class="btn btn-default btn-sm blackbtn">Cancel</button>
+                <button id="massupdateOk" type="button" class="btn btn-primary btn-sm redbtn">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+</div>
+</apex:define>
+
+<!--JAVASCRIPTS-->
+<script type="text/javascript"> 
+
+
+var OrganizationId = "{!JSINHTMLENCODE($Organization.Id)}";
+
+var channel;
+if(OrganizationId != ''){
+    channel = OrganizationId.substring(0,15);
+}      
+var pinURL = "{!URLFOR($Resource.SIMStyleAndJavascript)}";
+var currentSFUserId = "{!JSINHTMLENCODE($User.Id)}";
+
+// variable initialized with false used to check whether browser supported the indexedDB or not.
+// It gets value true when indexedDB methods through error.
+var appWithIndexedDB = true;
+
+var docHt = $(window).height();
+$('#initLoad').height(docHt);
+
+// add all remoting method names in one object
+var MP_REMOTING = {
+    GET_CUSTOM_OBJ_LIST: '{!$RemoteAction.Ctrl_MapPlotter.GetSelectedDataPoints}',
+    GET_COUNTRY_DATA: '{!$RemoteAction.Ctrl_MapPlotter.PopulateCountries}',
+    GET_DATAPOINTS: '{!$RemoteAction.Ctrl_MapPlotter.OnClickFetchMapPointsForLocationFilter}',
+    GET_SEARCH_RESULT: '{!$RemoteAction.Ctrl_MapPlotter.OnClickSearchText}',
+    GET_API_KEYS: '{!$RemoteAction.Ctrl_MapPlotter.GetAPIKeys}',
+    GET_REPORT_LIST: '{!$RemoteAction.Ctrl_MapPlotter.GetSFReportList}',
+    GET_REPORT_DATA: '{!$RemoteAction.Ctrl_MapPlotter.GetSFReportData}',
+    CHECK_APEX_JOB_STATUS: '{!$RemoteAction.Ctrl_MapPlotter.CheckApexJobsStatus}',
+    GET_SYNC_DATA: '{!$RemoteAction.Ctrl_MapPlotter.GetDataBtnIndexedDBandSF1}',
+    GET_OBJ_METADATA: '{!$RemoteAction.Ctrl_MapPlotter.GetObjectMetaData}',
+    GET_OPERATORS: '{!$RemoteAction.Ctrl_MapPlotter.GetOperators}',
+    SAVE_FILTER: '{!$RemoteAction.Ctrl_MapPlotter.SaveAndRunFilter}',
+    EDIT_FILTER: '{!$RemoteAction.Ctrl_MapPlotter.editFilter}',
+    DELETE_FILTER: '{!$RemoteAction.Ctrl_MapPlotter.deleteFilter}',
+    GET_FILTER_LEGEND: '{!$RemoteAction.Ctrl_MapPlotter.GetFilterLegend}',
+    // Promotional alerts functions
+    ReminderPageVisit: '{!$RemoteAction.Ctrl_MapPlotter.ReminderPageVisit}',
+    PageVisited: '{!$RemoteAction.Ctrl_MapPlotter.PageVisited}',
+    getPromotionData: '{!$RemoteAction.Ctrl_MapPlotter.getPromotionData}',
+     //Map-plotter customization
+    //Export function
+    EXPORT_DATA:'{!$RemoteAction.Ctrl_MapPlotter.ExportFilteredData}',
+    //Mass Update
+    MASS_UPDATE:'{!$RemoteAction.Ctrl_MapPlotter.MassUpdatesObject}',
+    MASS_UPDATE_FIELD:'{!$RemoteAction.Ctrl_MapPlotter.fieldsForMassUpdate}',
+    //Info window details function
+    CUSTOM_DETAILS: '{!$RemoteAction.Ctrl_MapPlotter.GetFieldSetsValueOnRecordDetail}',
+    //GreySteel Customization
+    //Code added by Rakesh to show Export and Mass Update button basis user profile 
+    //Function to check if logged in user is allowed for Mass Update and Export option
+    VALIDUSER_FR_EXPORTMU: '{!$RemoteAction.Ctrl_MapPlotter.ChkUsrAllowedFrExportMU}'
+};
+Visualforce.remoting.timeout = 120000;
+
+//False Positive: Loaded Google map api library dynamically which is used to display map on webpage.
+var jsElm = document.createElement("script");
+jsElm.type = "application/javascript";
+jsElm.src = 'https://maps.googleapis.com/maps/api/js?key={!JSENCODE(googleAPIkey)}&v=3.32&libraries=places,drawing,visualization';
+document.body.appendChild(jsElm); 
+
+jQuery(document).ready(function($){
+    //open popup
+    //close popup
+    $('.cd-popup').on('click', function(event){
+        if( $(event.target).is('.cd-popup-close') ){
+            event.preventDefault();
+            $(this).removeClass('is-visible');
+        }
+    });
+    //close popup when clicking the esc keyboard button
+});
+</script>
+<apex:includeScript value="{!URLFOR($Resource.mpConstants)}"/>
+<apex:includeScript value="{!URLFOR($Resource.mapScript)}"/>
+<apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/html5sql.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.indexedDBWrapper)}"/>
+<apex:includeScript value="{!URLFOR($Resource.homeView)}"/>
+<apex:includeScript value="{!URLFOR($Resource.listView)}"/>
+<apex:includeScript value="{!URLFOR($Resource.mapDetailView)}"/>
+<apex:includeScript value="{!URLFOR($Resource.reportsView)}"/>
+<apex:includeScript value="{!URLFOR($Resource.utility)}"/>
+<apex:includeScript value="{!URLFOR($Resource.dataModel)}"/>
+<apex:includeScript value="{!URLFOR($Resource.appJS)}"/>
+
+</apex:page>
