@@ -24,6 +24,7 @@
     <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/bootstrap/bootstrap.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jquery.dataTables.min.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/dataTables.bootstrap4.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/purify.js')}"/>
     
     
     

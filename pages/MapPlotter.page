@@ -22,6 +22,7 @@
         <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/jquery-3.3.1.min.js')}"/>
         <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/underscore-min.js')}"/>
         <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/backbone-min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/purify.js')}"/>
         
         <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/html2canvas.js')}"/>
         <apex:includeScript value="{!URLFOR($Resource.SIMStyleAndJavascript,'/SIMStyleAndJavascript/js/libs/popper.min.js')}"/>
