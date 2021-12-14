@@ -821,8 +821,7 @@ mapModel.prototype.getWeather = function(lat, lng, divId) {
                             "weatherdata": response,
                         };
                         var weatherTemplate = app.utility.createTemplate('weatherTemplate');
-                        // var weatherTemplate = DOMPurify.sanitize(weatherTemplateUnPurified);
-                        // var purifiedData = DOMPurify.sanitize(data)
+
                         $('#' + divId + ' #section-2').html(weatherTemplate(data));
                         //To hide weather tab 
                         //$('#'+divId+' span[data-section="section-2"]').data('fetch', 'true');
