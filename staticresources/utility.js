@@ -32,9 +32,9 @@ app.utility = {
     // function for clearing indexedDB on unistallation of app.
     clearDBfunction: function() {
         function getUrlVars() {
-            var vars = [],
-                var hash;
-            Object.freeze(Object.getPrototypeOf(vars));
+            var vars = [];
+            var hash;
+            Object.seal(Object.prototype);
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
             for (var i = 0; i < hashes.length; i++) {
                 hash = hashes[i].split('=');
