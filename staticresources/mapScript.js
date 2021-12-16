@@ -820,12 +820,33 @@ mapModel.prototype.getWeather = function(lat, lng, divId) {
                         var data = {
                             "weatherdata": response,
                         };
+
                         var weatherTemplate = app.utility.createTemplate('weatherTemplate');
+                        // var encodedStr = weatherTemplate(data)
+                        //     .replace(/[\u00A0-\u9999<>\&]/g, function(i) {
+                        //         return '&#' + i.charCodeAt(0) + ';';
+                        //     });
+                        const weatherTemplateElement = document.createRange()
+                            .createContextualFragment(weatherTemplate(data));
                         var weatherContainer = document.querySelector('#' + divId + ' #section-2');
-                        weatherContainer.innerHTML = weatherTemplate(data)
-                            // $('#' + divId + ' #section-2').html(weatherTemplate(data));
-                            //To hide weather tab 
-                            //$('#'+divId+' span[data-section="section-2"]').data('fetch', 'true');
+                        weatherContainer.innerHTML = '';
+                        weatherContainer.appendChild(weatherTemplateElement);
+
+                        // var weatherTemplate = app.utility.createTemplate('weatherTemplate');
+                        // var encodedStr = weatherTemplate.replace(/[\u00A0-\u9999<>\&]/g, function(i) {
+                        //     return '&#' + i.charCodeAt(0) + ';';
+                        // });
+
+                        // var weatherContainer = document.querySelector('#' + divId + ' #section-2');
+                        // weatherContainer.append = encodedStr(data)
+
+                        // var weatherTemplate = app.utility.createTemplate('weatherTemplate');
+                        // var weatherContainer = document.querySelector('#' + divId + ' #section-2');
+                        // weatherContainer.append = weatherContainer(data)
+
+                        // $('#' + divId + ' #section-2').html(weatherTemplate(data));
+                        //To hide weather tab 
+                        //$('#'+divId+' span[data-section="section-2"]').data('fetch', 'true');
 
                         var skycons = new Skycons({ "color": "#737373" });
                         var iconElms = $('.wIcon');
