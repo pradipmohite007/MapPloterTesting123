@@ -821,10 +821,11 @@ mapModel.prototype.getWeather = function(lat, lng, divId) {
                             "weatherdata": response,
                         };
                         var weatherTemplate = app.utility.createTemplate('weatherTemplate');
-
-                        $('#' + divId + ' #section-2').html(weatherTemplate(data));
-                        //To hide weather tab 
-                        //$('#'+divId+' span[data-section="section-2"]').data('fetch', 'true');
+                        var weatherContainer = document.querySelector('#' + divId + ' #section-2');
+                        weatherContainer.innerHTML = weatherTemplate(data)
+                            // $('#' + divId + ' #section-2').html(weatherTemplate(data));
+                            //To hide weather tab 
+                            //$('#'+divId+' span[data-section="section-2"]').data('fetch', 'true');
 
                         var skycons = new Skycons({ "color": "#737373" });
                         var iconElms = $('.wIcon');
